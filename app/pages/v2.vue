@@ -14,165 +14,29 @@
       <h1 class="font-semibold text-2xl">Fusion Masters</h1>
       <div class="space-y-4">
         <div>
-          <label for="url">
-            <span class="text-sm font-medium text-gray-700">Text / URL</span>
-
-            <input
-              id="url"
-              v-model.trim="url"
-              type="text"
-              class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm"
-            />
-          </label>
+          <ElInput v-model="url" name="url" label="Text / URL" type="text" />
         </div>
         <div>
-          <div>
-            <span class="text-sm font-medium text-gray-700">Dark Mode</span>
-            <label
-              class="group relative block h-8 w-14 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500"
-            >
-              <input
-                id="darkMode"
-                v-model="config.darkMode"
-                type="checkbox"
-                class="peer sr-only"
-              />
-
-              <span
-                class="absolute inset-y-0 start-0 m-1 grid size-6 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18 18 6M6 6l12 12"
-                  />
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m4.5 12.75 6 6 9-13.5"
-                  />
-                </svg>
-              </span>
-            </label>
-          </div>
+          <ElInputSwitch
+            v-model="config.darkMode"
+            name="darkMode"
+            label="Dark Mode"
+          />
         </div>
         <div>
-          <div>
-            <span class="text-sm font-medium text-gray-700"
-              >Make QR code on initial load transparent</span
-            >
-            <label
-              class="group relative block h-8 w-14 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500"
-            >
-              <input
-                id="initialTransparentCode"
-                v-model="config.initialTransparentCode"
-                type="checkbox"
-                class="peer sr-only"
-              />
-
-              <span
-                class="absolute inset-y-0 start-0 m-1 grid size-6 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18 18 6M6 6l12 12"
-                  />
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m4.5 12.75 6 6 9-13.5"
-                  />
-                </svg>
-              </span>
-            </label>
-          </div>
+          <ElInputSwitch
+            v-model="config.initialTransparentCode"
+            name="initialTransparentCode"
+            label="Make QR code on initial load transparent"
+          />
         </div>
         <div class="bg-neutral-100 border border-neutral-200 p-4">
           <div class="space-y-4">
-            <div>
-              <span class="text-sm font-medium text-gray-700"
-                >Auto generate new version</span
-              >
-              <label
-                class="group relative block h-8 w-14 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500"
-              >
-                <input
-                  id="animationEnabled"
-                  v-model="config.animation.enabled"
-                  type="checkbox"
-                  class="peer sr-only"
-                />
-
-                <span
-                  class="absolute inset-y-0 start-0 m-1 grid size-6 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-4"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18 18 6M6 6l12 12"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-4"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="m4.5 12.75 6 6 9-13.5"
-                    />
-                  </svg>
-                </span>
-              </label>
-            </div>
+            <ElInputSwitch
+              v-model="config.animation.enabled"
+              name="animationEnabled"
+              label="Auto generate new version"
+            />
             <template v-if="isActive">
               <div class="space-y-1">
                 <div class="text-sm font-medium text-gray-700">Mode</div>
