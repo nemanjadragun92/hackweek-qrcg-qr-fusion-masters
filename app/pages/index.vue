@@ -9,7 +9,7 @@
   </Html>
   <div class="h-svh w-screen flex">
     <aside
-      class="bg-neutral-50 text-black w-sm p-4 px-8 space-y-4 border-r border-neutral-200"
+      class="bg-(--bg-color)/5 backdrop-blur-sm bottom-0 top-0 left-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-r border-(--text-color)/10"
     >
       <h1 class="font-semibold text-2xl">Fusion Masters</h1>
       <div class="space-y-4">
@@ -30,7 +30,7 @@
             label="Make QR code on initial load transparent"
           />
         </div>
-        <div class="bg-neutral-100 border border-neutral-200 p-4">
+        <div class="bg-(--text-color)/10 border border-(--text-color)/20 p-4">
           <div class="space-y-4">
             <ElInputSwitch
               v-model="config.animation.enabled"
@@ -39,13 +39,13 @@
             />
             <template v-if="isActive">
               <div class="space-y-1">
-                <div class="text-sm font-medium text-gray-700">Mode</div>
+                <div class="text-sm font-medium">Mode</div>
                 <span
-                  class="inline-flex divide-x divide-gray-300 overflow-hidden border border-gray-300 bg-white"
+                  class="inline-flex divide-x divide-(--text-color)/25 overflow-hidden border border-(--text-color)/25 bg-(--bg-color)"
                 >
                   <button
                     type="button"
-                    class="px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 focus:relative"
+                    class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
                     :class="{
                       'text-green-500': config.animation.mode === 'instant',
                     }"
@@ -56,7 +56,7 @@
 
                   <button
                     type="button"
-                    class="px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 focus:relative"
+                    class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
                     :class="{
                       'text-green-500': config.animation.mode === 'ease-in',
                     }"
@@ -67,7 +67,7 @@
                 </span>
               </div>
               <div v-if="config.animation.mode === 'ease-in'" class="space-y-1">
-                <div class="text-sm font-medium text-gray-700">
+                <div class="text-sm font-medium">
                   Speed ({{ config.animation.speed }}ms)
                 </div>
                 <input
@@ -83,7 +83,7 @@
             <div v-else>
               <button
                 type="button"
-                class="inline-block w-full rounded-sm border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-indigo-500 focus:ring-3 focus:outline-hidden"
+                class="inline-block w-full rounded-sm border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-green-500 focus:ring-3 focus:outline-hidden"
                 @click="onInit"
               >
                 Generate new version

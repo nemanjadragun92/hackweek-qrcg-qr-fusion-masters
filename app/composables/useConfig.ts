@@ -35,7 +35,11 @@ export default function useConfig() {
   const animation = computed(() => config.value.animation);
 
   // Reload in those cases
-  watch(isDarkMode, async (_darkMode) => {
+  watch(isAnimationEnabled, async () => {
+    location.reload();
+  });
+
+  watch(isDarkMode, async () => {
     location.reload();
   });
 

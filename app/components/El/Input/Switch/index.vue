@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <span
-      :aria-labelledby="props.name"
-      class="text-sm font-medium text-gray-700"
-      >{{ props.label }}</span
-    >
+  <div class="flex flex-col gap-2">
+    <span :aria-labelledby="props.name" class="text-sm font-medium">{{
+      props.label
+    }}</span>
     <label
       class="group relative block h-8 w-14 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500"
     >

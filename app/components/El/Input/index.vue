@@ -1,12 +1,12 @@
 <template>
   <label :for="props.name">
-    <span class="text-sm font-medium text-gray-700">{{ props.label }}</span>
+    <span class="text-sm font-medium">{{ props.label }}</span>
 
     <input
       :id="props.name"
       v-model.trim="model"
       :type="props.type"
-      class="mt-0.5 w-full border-gray-300 sm:text-sm"
+      class="mt-0.5 w-full bg-(--bg-color)/75 border-(--text-color)/25 text-(--text-color) sm:text-sm"
     />
   </label>
 </template>
