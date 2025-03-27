@@ -41,7 +41,7 @@
               <div class="space-y-1">
                 <div class="text-sm font-medium text-gray-700">Mode</div>
                 <span
-                  class="inline-flex divide-x divide-gray-300 overflow-hidden rounded border border-gray-300 bg-white shadow-sm"
+                  class="inline-flex divide-x divide-gray-300 overflow-hidden border border-gray-300 bg-white"
                 >
                   <button
                     type="button"

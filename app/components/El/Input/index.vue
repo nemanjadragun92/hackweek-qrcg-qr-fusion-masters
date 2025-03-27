@@ -6,7 +6,7 @@
       :id="props.name"
       v-model.trim="model"
       :type="props.type"
-      class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm"
+      class="mt-0.5 w-full border-gray-300 sm:text-sm"
     />
   </label>
 </template>
