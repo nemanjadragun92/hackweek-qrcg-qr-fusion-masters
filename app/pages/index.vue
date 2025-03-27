@@ -96,7 +96,9 @@
     <div class="flex items-center justify-center flex-1">
       <div class="size-[400px] relative">
         <div ref="containerEl" class="wrapper size-[400px]" v-html="data" />
-        <div class="absolute inset-0 flex items-center justify-center">
+        <div
+          class="absolute inset-0 flex items-center justify-center pointer-events-none"
+        >
           <img
             src="https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif"
             alt=""
