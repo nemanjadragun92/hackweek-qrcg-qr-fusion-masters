@@ -93,17 +93,16 @@
         </div>
       </div>
     </aside>
-    <div class="flex items-center justify-center flex-1">
-      <div class="size-[400px] relative">
+    <div
+      class="flex items-center justify-center flex-1 relative overflow-hidden"
+    >
+      <div id="content" class="absolute inset-0 w-full h-full" />
+      <div class="size-[400px] relative z-10">
         <div ref="containerEl" class="wrapper size-[400px]" v-html="data" />
         <div
           class="absolute inset-0 flex items-center justify-center pointer-events-none"
         >
-          <img
-            src="https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif"
-            alt=""
-            class="size-16"
-          />
+          <img :src="image" alt="" class="size-16" />
         </div>
       </div>
     </div>
@@ -114,6 +113,9 @@
 const containerEl = ref<HTMLElement | null>(null);
 const url = ref<string>("https://qrapp-legacy.egodit.org");
 const urlDebounced = refDebounced(url, 500);
+// https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif
+// const image = "https://i.giphy.com/3gRWfmZMI0Cb2Hoaye.webp";
+const image = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
 
 const { config, isDarkMode, isCodeTransparentOnLoad, isAnimationEnabled } =
   useConfig();
@@ -188,6 +190,10 @@ watch(isAnimationEnabled, (_animationEnabled) => {
 }
 
 .wrapper * {
+  transition: all 500ms;
+}
+
+#content * {
   transition: all 500ms;
 }
 </style>

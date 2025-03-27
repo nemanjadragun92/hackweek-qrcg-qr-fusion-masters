@@ -2,11 +2,12 @@ export default function useCode(containerEl: Ref<HTMLElement | null>) {
   const { isDarkMode, isAnimationEnabled, animation } = useConfig();
 
   const onInit = async () => {
+    addStars(5, 3000);
     await nextTick();
     const backgroundColor = isDarkMode.value ? "#000000" : "#ffffff";
     const svgElement = containerEl.value?.firstChild as SVGSVGElement;
     const bg = svgElement?.querySelector('rect[width="2000"]');
-    bg?.setAttribute("fill", "transparent");
+    bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.75));
     const childNodes = Array.from(
       svgElement?.firstChild?.nextSibling?.childNodes ?? [],
     );
@@ -79,38 +80,90 @@ export default function useCode(containerEl: Ref<HTMLElement | null>) {
         polygon.setAttribute("fill", getRandomColor(backgroundColor));
 
         // TODO: Add star shape to config
-        const skip = polygon.classList?.toString() === "readonly";
-        if (!skip) {
-          const bbox = polygon.getBBox();
-          const width = bbox.width;
-          const height = bbox.height;
-          const centerX = bbox.x + width / 2;
-          const centerY = bbox.y + height / 2;
-          const outerRadius = Math.min(width, height) / 2;
-          const innerRadius = outerRadius / 2.5;
-          const numPoints = 5;
-
-          const starPoints = Array.from({ length: numPoints * 2 })
-            .map((_, i) => {
-              const angle = (i * Math.PI) / numPoints;
-              const radius = i % 2 === 0 ? outerRadius : innerRadius;
-              return [
-                centerX + radius * Math.cos(angle - Math.PI / 2),
-                centerY + radius * Math.sin(angle - Math.PI / 2),
-              ].join(",");
-            })
-            .join(" ");
-
-          polygon.setAttribute("points", starPoints);
-          polygon?.classList?.add?.("readonly");
-        }
+        // const skip = polygon.classList?.toString() === "readonly";
+        // if (!skip) {
+        //   const bbox = polygon.getBBox();
+        //   const width = bbox.width;
+        //   const height = bbox.height;
+        //   const centerX = bbox.x + width / 2;
+        //   const centerY = bbox.y + height / 2;
+        //   const outerRadius = Math.min(width, height) / 2;
+        //   const innerRadius = outerRadius / 2.5;
+        //   const numPoints = 5;
+        //
+        //   const starPoints = Array.from({ length: numPoints * 2 })
+        //     .map((_, i) => {
+        //       const angle = (i * Math.PI) / numPoints;
+        //       const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        //       return [
+        //         centerX + radius * Math.cos(angle - Math.PI / 2),
+        //         centerY + radius * Math.sin(angle - Math.PI / 2),
+        //       ].join(",");
+        //     })
+        //     .join(" ");
+        //
+        //   polygon.setAttribute("points", starPoints);
+        //   polygon?.classList?.add?.("readonly");
+        // }
       });
     });
   };
 
   onMounted(async () => {
+    // Enable when stars config is enabled
+    addStars(5, 3000);
     await onInit();
   });
+
+  const addStars = (density: number, amount: number) => {
+    const svgContainer = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg",
+    );
+    svgContainer.setAttribute("width", window.innerWidth.toString());
+    svgContainer.setAttribute("height", window.innerHeight.toString());
+    svgContainer.style.position = "absolute";
+    svgContainer.style.top = "0";
+    svgContainer.style.left = "0";
+    svgContainer.style.zIndex = "1";
+    const element = document.getElementById("content");
+
+    if (!element!.childNodes.length) {
+      element!.appendChild(svgContainer);
+      for (let i = 0; i < amount; i++) {
+        const star = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "polygon",
+        );
+        const centerX = Math.random() * window.innerWidth;
+        const centerY = Math.random() * window.innerHeight;
+        const outerRadius = density; // Increase the outer radius
+        const innerRadius = outerRadius / 2.5;
+        const numPoints = 5;
+
+        const starPoints = Array.from({ length: numPoints * 2 })
+          .map((_, i) => {
+            const angle = (i * Math.PI) / numPoints;
+            const radius = i % 2 === 0 ? outerRadius : innerRadius;
+            return [
+              centerX + radius * Math.cos(angle - Math.PI / 2),
+              centerY + radius * Math.sin(angle - Math.PI / 2),
+            ].join(",");
+          })
+          .join(" ");
+
+        star.setAttribute("points", starPoints);
+        star.classList.add("opacity-75");
+        star.setAttribute("fill", getRandomColor("#000000")); // Assuming background color is black
+
+        svgContainer.appendChild(star);
+      }
+    } else {
+      for (const star of element!.querySelectorAll("polygon")) {
+        star.setAttribute("fill", getRandomColor("#000000"));
+      }
+    }
+  };
 
   return { onInit };
 }
