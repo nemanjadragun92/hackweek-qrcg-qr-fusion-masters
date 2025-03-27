@@ -4,7 +4,7 @@
       props.label
     }}</span>
     <label
-      class="group relative block h-8 w-14 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500"
+      class="group relative block h-6 w-12 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500"
     >
       <input
         :id="props.name"
@@ -14,7 +14,7 @@
       />
 
       <span
-        class="absolute inset-y-0 start-0 m-1 grid size-6 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block"
+        class="absolute inset-y-0 start-0 m-1 grid size-4 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-4"
+          class="size-3"
         >
           <path
             stroke-linecap="round"
@@ -36,7 +36,7 @@
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="size-4"
+          class="size-3"
         >
           <path
             stroke-linecap="round"
