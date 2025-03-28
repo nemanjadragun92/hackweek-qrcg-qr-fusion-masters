@@ -7,3 +7,7 @@
 - On hover show tooltip above QR code with full URL in case its valid URL
 - Try to blend image in QR code and check if its scanable
 - Make floating button so that user can get embeded code in order to share qr code itself or whole container
+
+
+### Expose localhost (https://localhost.run/)
+ssh -R 80:localhost:3000 nokey@localhost.run
