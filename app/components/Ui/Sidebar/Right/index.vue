@@ -41,6 +41,17 @@
           >
             {{ ETheme.earth }}
           </button>
+
+          <button
+            type="button"
+            class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
+            :class="{
+              'text-orange-500': config.theme.selected === ETheme.background,
+            }"
+            @click="config.theme.selected = ETheme.background"
+          >
+            {{ ETheme.background }}
+          </button>
         </span>
       </div>
       <hr class="border-(--text-color)/20" />

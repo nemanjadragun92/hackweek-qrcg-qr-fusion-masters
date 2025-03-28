@@ -2,6 +2,7 @@ export enum ETheme {
   default = "default",
   stars = "stars",
   earth = "earth",
+  background = "background",
 }
 
 type Config = {
@@ -46,6 +47,7 @@ const defaultConfig: Config = {
         density: 5,
         amount: 3000,
       },
+      [ETheme.background]: {},
     },
   },
 };
@@ -99,6 +101,10 @@ export default function useConfig() {
       case ETheme.earth:
         return defineAsyncComponent(
           () => import("../components/Theme/Earth.vue"),
+        );
+      case ETheme.background:
+        return defineAsyncComponent(
+          () => import("../components/Theme/Background.vue"),
         );
       default:
         return null;

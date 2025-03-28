@@ -22,3 +22,18 @@ export const isQRCodeScannable = async (svgElement: SVGElement) => {
     img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
   });
 };
+
+export const isQRCodeWithBackgroundScannable = async (element: HTMLElement) => {
+  const html2canvas = (await import("html2canvas")).default;
+  const canvas = await html2canvas(element, {
+    logging: false,
+  });
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx) return false;
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const qrCode = jsQR(imageData.data, canvas.width, canvas.height);
+
+  return qrCode !== null;
+};

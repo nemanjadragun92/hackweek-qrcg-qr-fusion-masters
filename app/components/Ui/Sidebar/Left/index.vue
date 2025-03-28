@@ -135,39 +135,34 @@
 <script lang="ts" setup>
 const { url, onInit } = useCode();
 
-const { config, isAnimationEnabled, onResetConfig } = useConfig();
+const { config, isAnimationEnabled, onResetConfig, selectedTheme } =
+  useConfig();
 const isScannable = ref<boolean | null>(null);
 
 const showShareModal = ref(false);
 
-// watch(
-//   reloading,
-//   async () => {
-//     await nextTick();
-//     setTimeout(() => {
-//       onCheckIfCodeIsScannable();
-//     }, 1000);
-//   },
-//   {
-//     immediate: true,
-//   },
-// );
-
 useIntervalFn(async () => {
-  onCheckIfCodeIsScannable();
-}, 2500);
+  if (selectedTheme.value === ETheme.background) {
+    isScannable.value = null;
+  } else {
+    await onCheckIfCodeIsScannable();
+  }
+}, 5000);
 
-const onCheckIfCodeIsScannable = () => {
+const onCheckIfCodeIsScannable = async () => {
   const el = document.getElementById("qr_code_container");
   const svgElement = el?.children[0]?.children[0] as SVGElement | null;
 
   if (svgElement instanceof SVGElement) {
-    isQRCodeScannable(svgElement).then((isValid) => {
+    try {
+      const isValid = await isQRCodeScannable(svgElement);
       isScannable.value = !!isValid;
       console.log(
         isValid ? "QR Code is scannable!" : "QR Code is not scannable!",
       );
-    });
+    } catch (error) {
+      console.error("Error checking if QR code is scannable:", error);
+    }
   } else {
     console.log("QR code container or SVG element not found");
   }

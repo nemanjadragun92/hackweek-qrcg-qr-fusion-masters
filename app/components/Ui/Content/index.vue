@@ -1,9 +1,10 @@
 <template>
   <div class="flex items-center justify-center flex-1 relative overflow-hidden">
     <div id="content" class="absolute inset-0 w-full h-full" />
-    <div class="size-[400px] relative z-10 group">
+    <div id="qr_code_wrapper" class="size-[400px] relative z-10 group">
       <!--TOOD: Add for theme.background.util.ts type custom bg to set as well as image-->
       <div
+        v-if="selectedTheme === ETheme.background"
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
         <div
@@ -49,7 +50,12 @@ const { containerEl, returnValidUrl, urlDebounced, image, onInit } = useCode();
 // https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif
 // const image = "https://i.giphy.com/3gRWfmZMI0Cb2Hoaye.webp";
 
-const { isDarkMode, isCodeTransparentOnLoad, isAnimationEnabled } = useConfig();
+const {
+  isDarkMode,
+  isCodeTransparentOnLoad,
+  isAnimationEnabled,
+  selectedTheme,
+} = useConfig();
 
 let color = isDarkMode.value ? "#FFFFFF" : "#000000";
 if (isCodeTransparentOnLoad.value) {
