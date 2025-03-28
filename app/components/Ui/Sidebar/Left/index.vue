@@ -1,9 +1,9 @@
 <template>
   <aside
-    class="bg-(--ui-bg-color)/50 backdrop-blur-sm bottom-0 top-0 left-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-r border-(--text-color)/10"
+    class="bg-(--ui-bg-color)/50 backdrop-blur-sm bottom-0 top-0 left-0 fixed z-20 w-sm p-4 px-8 flex flex-col gap-4 border-r border-(--text-color)/10"
   >
     <h1 class="font-semibold text-2xl">Fusion Masters</h1>
-    <div class="space-y-4">
+    <div class="space-y-4 overflow-auto h-full">
       <div>
         <ElInput v-model="url" name="url" label="Text / URL" type="text" />
       </div>
@@ -84,7 +84,7 @@
           <div v-else>
             <button
               type="button"
-              class="inline-block w-full rounded-sm border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-green-500 focus:ring-3 focus:outline-hidden"
+              class="inline-block w-full border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-green-500 focus:ring-3 focus:outline-hidden"
               @click="onInit"
             >
               Generate new version
@@ -111,6 +111,15 @@
           </div>
         </div>
       </Teleport>
+    </div>
+    <div class="py-2">
+      <button
+        type="button"
+        class="inline-block w-full border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-green-500 focus:ring-3 focus:outline-hidden"
+        @click="onInit"
+      >
+        Generate Embedded Code
+      </button>
     </div>
   </aside>
 </template>
