@@ -1,6 +1,7 @@
 ### TODO
 
 - Add Predefined Themes (stars, snowman, super marion, space, earth, etc...)
+- Add config to use (random color, or list of selected colors)
 - Extend config and get rid of all TODOs
 - Check with mark how we can make it even more interesting with design
 - Make qr code clickable
