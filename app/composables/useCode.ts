@@ -1,11 +1,19 @@
+import { getRandomColorFromArray } from "~/utils/general.util";
+
 const containerEl = ref<HTMLElement | null>(null);
 const url = ref<string>("https://qrapp-legacy.egodit.org");
 const image = ref<string>("https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp");
 const urlDebounced = refDebounced(url, 500);
 
 export default function useCode() {
-  const { isDarkMode, isAnimationEnabled, animation, selectedTheme } =
-    useConfig();
+  const {
+    isDarkMode,
+    isAnimationEnabled,
+    animation,
+    selectedTheme,
+    isRandomColorEnabled,
+    selectedColors,
+  } = useConfig();
 
   const beforeInitConfig = () => {
     themeStarsInit();
@@ -32,7 +40,15 @@ export default function useCode() {
         if (isAnimationEnabled.value && animation.value.mode === "ease-in") {
           await promiseTimeout(animation.value.speed);
         }
-        rect.setAttribute?.("fill", getRandomColor(backgroundColor));
+
+        if (isRandomColorEnabled.value) {
+          rect.setAttribute?.("fill", getRandomColor(backgroundColor));
+        } else {
+          rect.setAttribute?.(
+            "fill",
+            getRandomColorFromArray(selectedColors.value),
+          );
+        }
         // rect.classList?.add?.("size-9"); // TODO: Add size to config
         // rect.classList?.add?.("fill-red-500"); // TODO: Add solid color to config
         switch (selectedTheme.value) {
@@ -50,12 +66,26 @@ export default function useCode() {
       const paths: HTMLCollectionOf<SVGPathElement> =
         rect.getElementsByTagName("path");
       Array.from(paths).forEach((path) => {
-        path.setAttribute("fill", getRandomColor(backgroundColor));
+        if (isRandomColorEnabled.value) {
+          path.setAttribute("fill", getRandomColor(backgroundColor));
+        } else {
+          path.setAttribute(
+            "fill",
+            getRandomColorFromArray(selectedColors.value),
+          );
+        }
       });
       const polygons: HTMLCollectionOf<SVGPolygonElement> =
         rect.getElementsByTagName("polygon");
       Array.from(polygons).forEach((polygon) => {
-        polygon.setAttribute("fill", getRandomColor(backgroundColor));
+        if (isRandomColorEnabled.value) {
+          polygon.setAttribute("fill", getRandomColor(backgroundColor));
+        } else {
+          polygon.setAttribute(
+            "fill",
+            getRandomColorFromArray(selectedColors.value),
+          );
+        }
       });
     });
   };

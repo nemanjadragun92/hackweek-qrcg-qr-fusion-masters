@@ -72,6 +72,14 @@ export default function useConfig() {
     () => config.value.theme.config[selectedTheme.value],
   );
 
+  const isRandomColorEnabled = computed(() => config.value.colors.random);
+
+  const selectedColors = computed(() => {
+    const colors = config.value.colors.selected;
+    if (!colors.length) return ["#000000"];
+    return colors;
+  });
+
   const returnThemeComponent = computed(() => {
     switch (selectedTheme.value) {
       case ETheme.stars:
@@ -137,6 +145,18 @@ export default function useConfig() {
     },
   );
 
+  const onChangeColors = computed(() => config.value.colors);
+  watchDebounced(
+    onChangeColors,
+    async () => {
+      await onReload();
+    },
+    {
+      debounce: 500,
+      deep: true,
+    },
+  );
+
   const onReload = async () => {
     // location.reload();
     reloading.value = true;
@@ -154,5 +174,7 @@ export default function useConfig() {
     returnThemeComponent,
     selectedTheme,
     selectedThemeConfig,
+    isRandomColorEnabled,
+    selectedColors,
   };
 }

@@ -1,3 +1,12 @@
+import { getRandomColorFromArray } from "~/utils/general.util";
+
+const {
+  selectedTheme,
+  selectedThemeConfig,
+  isRandomColorEnabled,
+  selectedColors,
+} = useConfig();
+
 export const themeStarsGenerateStars = (
   rect: Element,
   backgroundColor: string,
@@ -33,7 +42,14 @@ export const themeStarsGenerateStars = (
       .map((point) => point.join(","))
       .join(" ");
     star.setAttribute?.("points", points);
-    star.setAttribute?.("fill", getRandomColor(backgroundColor));
+    if (isRandomColorEnabled.value) {
+      star.setAttribute?.("fill", getRandomColor(backgroundColor));
+    } else {
+      star.setAttribute?.(
+        "fill",
+        getRandomColorFromArray(selectedColors.value),
+      );
+    }
     rect.replaceWith?.(star);
   }
 };
@@ -79,18 +95,30 @@ const themeStarsGenerateStarsBackground = (density: number, amount: number) => {
 
       star.setAttribute("points", starPoints);
       star.classList.add("opacity-75");
-      star.setAttribute("fill", getRandomColor("#000000")); // Assuming background color is black
+      if (isRandomColorEnabled.value) {
+        star.setAttribute?.("fill", getRandomColor("#000000"));
+      } else {
+        star.setAttribute?.(
+          "fill",
+          getRandomColorFromArray(selectedColors.value),
+        );
+      }
 
       svgContainer.appendChild(star);
     }
   } else {
     for (const star of element!.querySelectorAll("polygon")) {
-      star.setAttribute("fill", getRandomColor("#000000"));
+      if (isRandomColorEnabled.value) {
+        star.setAttribute?.("fill", getRandomColor("#000000"));
+      } else {
+        star.setAttribute?.(
+          "fill",
+          getRandomColorFromArray(selectedColors.value),
+        );
+      }
     }
   }
 };
-
-const { selectedTheme, selectedThemeConfig } = useConfig();
 
 export const themeStarsInit = () => {
   if (selectedTheme.value === ETheme.stars) {

@@ -22,7 +22,10 @@
       </div>
     </div>
     <h3>Selected Colors</h3>
-    <ul class="flex flex-wrap gap-2">
+    <p v-if="!config.colors.selected?.length" class="text-sm text-blue-500">
+      You do not have any selected colors yet. Default color is black
+    </p>
+    <ul v-else class="flex flex-wrap gap-2">
       <li
         v-for="selectedColor in config.colors.selected"
         :key="selectedColor"

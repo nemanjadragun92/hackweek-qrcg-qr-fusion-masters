@@ -97,3 +97,8 @@ export const hexToRgba = (hex: string, alpha: number) => {
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
+
+export const getRandomColorFromArray = (colors: string[]): string => {
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex] as string;
+};
