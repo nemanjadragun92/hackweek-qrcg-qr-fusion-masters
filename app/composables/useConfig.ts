@@ -54,6 +54,17 @@ export default function useConfig() {
     await onReload();
   });
 
+  const onChangeAnimationSpeed = computed(() => config.value.animation.speed);
+  watchDebounced(
+    onChangeAnimationSpeed,
+    async () => {
+      await onReload();
+    },
+    {
+      debounce: 500,
+    },
+  );
+
   const onReload = async () => {
     // location.reload();
     reloading.value = true;
