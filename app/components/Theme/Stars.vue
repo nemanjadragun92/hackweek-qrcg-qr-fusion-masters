@@ -26,5 +26,9 @@
 const { config } = useConfig();
 const { image } = useCode();
 
-image.value = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
+onMounted(async () => {
+  await nextTick();
+  image.value = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
+  config.value.colors.random = true;
+});
 </script>

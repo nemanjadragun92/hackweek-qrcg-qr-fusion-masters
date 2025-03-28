@@ -1,4 +1,5 @@
 export enum ETheme {
+  default = "default",
   stars = "stars",
   earth = "earth",
 }
@@ -30,12 +31,13 @@ const defaultConfig: Config = {
     speed: 2,
   },
   colors: {
-    random: true,
-    selected: ["#000000"],
+    random: false,
+    selected: ["#f0885c", "#ffffff"],
   },
   theme: {
-    selected: ETheme.stars,
+    selected: ETheme.default,
     config: {
+      [ETheme.default]: {},
       [ETheme.stars]: {
         density: 5,
         amount: 3000,
@@ -82,6 +84,10 @@ export default function useConfig() {
 
   const returnThemeComponent = computed(() => {
     switch (selectedTheme.value) {
+      case ETheme.default:
+        return defineAsyncComponent(
+          () => import("../components/Theme/Default.vue"),
+        );
       case ETheme.stars:
         return defineAsyncComponent(
           () => import("../components/Theme/Stars.vue"),

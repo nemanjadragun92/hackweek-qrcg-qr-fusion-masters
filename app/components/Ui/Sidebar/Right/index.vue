@@ -13,6 +13,17 @@
             type="button"
             class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
             :class="{
+              'text-green-500': config.theme.selected === ETheme.default,
+            }"
+            @click="config.theme.selected = ETheme.default"
+          >
+            {{ ETheme.default }}
+          </button>
+
+          <button
+            type="button"
+            class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
+            :class="{
               'text-green-500': config.theme.selected === ETheme.stars,
             }"
             @click="config.theme.selected = ETheme.stars"

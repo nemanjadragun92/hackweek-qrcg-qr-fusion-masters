@@ -1,8 +1,8 @@
 import { getRandomColorFromArray } from "~/utils/general.util";
 
 const containerEl = ref<HTMLElement | null>(null);
-const url = ref<string>("https://qrapp-legacy.egodit.org");
-const image = ref<string>("https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp");
+const url = ref<string>("https://bitly.com");
+const image = ref<string>("https://cdn.worldvectorlogo.com/logos/bitly.svg");
 const urlDebounced = refDebounced(url, 500);
 
 export default function useCode() {
