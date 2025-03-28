@@ -1,7 +1,6 @@
 <template>
-  <div class="space-y-4">
-    <h2 class="text-xl font-semibold">Configuration</h2>
-    <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2">
+    <div>
       <ElInput
         v-model.number="config.theme.config[ETheme.stars].density"
         name="themeStarsDensity"
@@ -10,6 +9,8 @@
         :min="1"
         :max="100"
       />
+    </div>
+    <div>
       <ElInput
         v-model.number="config.theme.config[ETheme.stars].amount"
         name="themeStarsAmount"
@@ -23,4 +24,7 @@
 
 <script lang="ts" setup>
 const { config } = useConfig();
+const { image } = useCode();
+
+image.value = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
 </script>

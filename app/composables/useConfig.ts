@@ -32,7 +32,10 @@ const defaultConfig: Config = {
         density: 5,
         amount: 3000,
       },
-      [ETheme.earth]: {},
+      [ETheme.earth]: {
+        density: 5,
+        amount: 3000,
+      },
     },
   },
 };

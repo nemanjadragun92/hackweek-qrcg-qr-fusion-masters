@@ -1,7 +1,6 @@
-import { themeStarsInit } from "~/utils/theme.stars.util";
-
 const containerEl = ref<HTMLElement | null>(null);
 const url = ref<string>("https://qrapp-legacy.egodit.org");
+const image = ref<string>("https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp");
 const urlDebounced = refDebounced(url, 500);
 
 export default function useCode() {
@@ -10,6 +9,7 @@ export default function useCode() {
 
   const beforeInitConfig = () => {
     themeStarsInit();
+    themeEarthInit();
   };
 
   const onInit = async () => {
@@ -35,15 +35,13 @@ export default function useCode() {
         rect.setAttribute?.("fill", getRandomColor(backgroundColor));
         // rect.classList?.add?.("size-9"); // TODO: Add size to config
         // rect.classList?.add?.("fill-red-500"); // TODO: Add solid color to config
-        // TODO: Add rounded to config
-        // const width = parseFloat(rect.getAttribute?.("width") || "0");
-        // const height = parseFloat(rect.getAttribute?.("height") || "0");
-        // const radius = Math.min(width, height) / 2;
-        // rect.setAttribute?.("rx", radius.toString());
-        // rect.setAttribute?.("ry", radius.toString());
-
-        if (selectedTheme.value === ETheme.stars) {
-          themeStarsGenerateStars(rect, backgroundColor);
+        switch (selectedTheme.value) {
+          case ETheme.stars:
+            themeStarsGenerateStars(rect, backgroundColor);
+            break;
+          case ETheme.earth:
+            themeEarthGenerateGlobe(rect);
+            break;
         }
       }
     }
@@ -66,5 +64,5 @@ export default function useCode() {
     await onInit();
   });
 
-  return { containerEl, url, urlDebounced, onInit };
+  return { containerEl, url, image, urlDebounced, onInit };
 }

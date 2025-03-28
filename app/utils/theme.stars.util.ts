@@ -38,10 +38,7 @@ export const themeStarsGenerateStars = (
   }
 };
 
-export const themeStarsGenerateStarsBackground = (
-  density: number,
-  amount: number,
-) => {
+const themeStarsGenerateStarsBackground = (density: number, amount: number) => {
   const svgContainer = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "svg",

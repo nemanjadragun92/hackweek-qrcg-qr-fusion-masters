@@ -4,6 +4,7 @@
     <div class="size-[400px] relative z-10">
       <div ref="containerEl" class="wrapper size-[400px]" v-html="data" />
       <div
+        v-if="image"
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
         <img :src="image" alt="" class="size-16" />
@@ -13,10 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-const { containerEl, urlDebounced, onInit } = useCode();
+const { containerEl, urlDebounced, image, onInit } = useCode();
 // https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif
 // const image = "https://i.giphy.com/3gRWfmZMI0Cb2Hoaye.webp";
-const image = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
 
 const { isDarkMode, isCodeTransparentOnLoad, isAnimationEnabled } = useConfig();
 

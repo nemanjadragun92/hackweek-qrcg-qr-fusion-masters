@@ -129,7 +129,13 @@
           </span>
         </div>
         <hr class="border-(--text-color)/20" />
-        <component :is="returnThemeComponent" v-if="returnThemeComponent" />
+        <div class="space-y-2">
+          <h2 class="text-xl font-semibold">Configuration</h2>
+          <div>
+            <ElInput v-model="image" name="image" label="Image" type="text" />
+          </div>
+          <component :is="returnThemeComponent" v-if="returnThemeComponent" />
+        </div>
       </div>
     </aside>
   </div>
@@ -138,7 +144,7 @@
 <script lang="ts" setup>
 import { ETheme } from "~/composables/useConfig";
 
-const { url, onInit } = useCode();
+const { url, image, onInit } = useCode();
 const {
   config,
   isDarkMode,
