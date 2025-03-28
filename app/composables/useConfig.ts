@@ -13,11 +13,12 @@ type Config = {
   };
   theme: {
     selected: ETheme;
+    config: { [key in ETheme]: any };
   };
 };
 
 const defaultConfig: Config = {
-  darkMode: false,
+  darkMode: true,
   initialTransparentCode: false,
   animation: {
     enabled: true,
@@ -26,6 +27,13 @@ const defaultConfig: Config = {
   },
   theme: {
     selected: ETheme.stars,
+    config: {
+      [ETheme.stars]: {
+        density: 5,
+        amount: 3000,
+      },
+      [ETheme.earth]: {},
+    },
   },
 };
 
@@ -48,6 +56,10 @@ export default function useConfig() {
   const animation = computed(() => config.value.animation);
 
   const selectedTheme = computed(() => config.value.theme.selected);
+
+  const selectedThemeConfig = computed(
+    () => config.value.theme.config[selectedTheme.value],
+  );
 
   const returnThemeComponent = computed(() => {
     switch (selectedTheme.value) {
@@ -93,6 +105,27 @@ export default function useConfig() {
     },
   );
 
+  watchDebounced(
+    selectedTheme,
+    async () => {
+      await onReload();
+    },
+    {
+      debounce: 500,
+    },
+  );
+
+  watchDebounced(
+    selectedThemeConfig,
+    async () => {
+      await onReload();
+    },
+    {
+      debounce: 500,
+      deep: true,
+    },
+  );
+
   const onReload = async () => {
     // location.reload();
     reloading.value = true;
@@ -108,5 +141,7 @@ export default function useConfig() {
     animation,
     reloading,
     returnThemeComponent,
+    selectedTheme,
+    selectedThemeConfig,
   };
 }

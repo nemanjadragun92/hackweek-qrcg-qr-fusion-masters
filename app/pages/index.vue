@@ -127,6 +127,7 @@
             </button>
           </span>
         </div>
+        <hr class="border-(--text-color)/20" />
         <component :is="returnThemeComponent" v-if="returnThemeComponent" />
       </div>
     </aside>
