@@ -11,7 +11,7 @@
           class="size-[400px] bg-transparent flex items-center justify-center"
         >
           <img
-            src="https://media.istockphoto.com/id/1266265722/vector/merry-christmas-square-postcard-with-winter-landscape-big-yellow-moon-santa-claus-bag-and.jpg?s=612x612&w=0&k=20&c=dlBt9-oiL-taQ0gH4QTP6eLPaoA79f9jIhgMIsdeb4g="
+            src="https://cdn4.iconfinder.com/data/icons/miu-square-flat-social/60/whatsapp-square-social-media-512.png"
             alt="BG"
             class="size-[350px] object-cover"
           />
