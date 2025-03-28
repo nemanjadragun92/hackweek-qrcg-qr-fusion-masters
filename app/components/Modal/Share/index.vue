@@ -14,7 +14,21 @@
           </button>
         </div>
         <div class="bg-white/25 border border-white/50 py-8 px-6 space-y-4">
-          <h3 class="text-lg font-semibold text-center">Share your code</h3>
+          <h3 class="text-lg font-semibold text-center">
+            Share your amazing code with others!
+          </h3>
+          <div class="bg-black/75 border border-black p-4">
+            <pre
+              class="whitespace-break-spaces overflow-auto text-sm"
+              v-text="embededLink"
+            />
+          </div>
+          <div
+            v-if="isClipboardSupported || isShareSupported"
+            class="text-center"
+          >
+            or
+          </div>
           <div>
             <div v-if="isClipboardSupported">
               <button
@@ -22,7 +36,7 @@
                 @click="copy(returnSharableLink)"
               >
                 <!-- by default, `copied` will be reset in 1.5s -->
-                <span v-if="!copied">Click to copy link</span>
+                <span v-if="!copied">Click to copy link to clipboard</span>
                 <span v-else>Copied to clipboard!</span>
               </button>
             </div>
@@ -72,4 +86,12 @@ const onShare = () => {
     url: returnSharableLink.value,
   });
 };
+
+const embededLink = `<iframe
+  width="550"
+  height="550"
+  src="${returnSharableLink.value}"
+  title="Powered by QRFusionMasters"
+  frameborder="0"
+/>`;
 </script>
