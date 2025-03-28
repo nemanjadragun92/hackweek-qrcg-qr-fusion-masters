@@ -24,5 +24,7 @@ type Props = {
 
 const props = defineProps<Props>();
 
-const model = defineModel({ type: String });
+type Model = string | number;
+
+const model = defineModel<Model>();
 </script>

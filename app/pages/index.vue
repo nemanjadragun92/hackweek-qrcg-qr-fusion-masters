@@ -3,13 +3,14 @@
     :style="{
       '--bg-color': 'black',
       '--text-color': 'white',
+      '--ui-bg-color': isDarkMode ? 'black' : 'white',
     }"
   >
     <Body :class="isDarkMode ? 'bg-black text-white' : 'bg-white text-black'" />
   </Html>
   <div class="h-svh w-screen flex">
     <aside
-      class="bg-(--bg-color)/5 backdrop-blur-sm bottom-0 top-0 left-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-r border-(--text-color)/10"
+      class="bg-(--ui-bg-color)/80 backdrop-blur-sm bottom-0 top-0 left-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-r border-(--text-color)/10"
     >
       <h1 class="font-semibold text-2xl">Fusion Masters</h1>
       <div class="space-y-4">
@@ -95,7 +96,7 @@
     </aside>
     <UiContent v-if="!reloading" :key="`${reloading}`" />
     <aside
-      class="bg-(--bg-color)/5 backdrop-blur-sm bottom-0 top-0 right-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-l border-(--text-color)/10"
+      class="bg-(--ui-bg-color)/80 backdrop-blur-sm bottom-0 top-0 right-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-l border-(--text-color)/10"
     >
       <h2 class="font-semibold text-2xl">Themes</h2>
       <div class="space-y-4">
