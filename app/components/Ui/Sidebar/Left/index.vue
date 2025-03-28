@@ -116,12 +116,13 @@
       <button
         type="button"
         class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
-        @click="onInit"
+        @click="showShareModal = true"
       >
         Generate Embedded Code
       </button>
     </div>
   </aside>
+  <ModalShare v-if="showShareModal" @close="showShareModal = false" />
 </template>
 
 <script lang="ts" setup>
@@ -129,6 +130,8 @@ const { url, onInit } = useCode();
 
 const { config, isAnimationEnabled } = useConfig();
 const isScannable = ref<boolean | null>(null);
+
+const showShareModal = ref(false);
 
 // watch(
 //   reloading,
