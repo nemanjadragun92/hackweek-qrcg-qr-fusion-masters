@@ -19,11 +19,11 @@ type Config = {
 
 const defaultConfig: Config = {
   darkMode: true,
-  initialTransparentCode: false,
+  initialTransparentCode: true,
   animation: {
     enabled: true,
     mode: "instant",
-    speed: 10,
+    speed: 2,
   },
   theme: {
     selected: ETheme.stars,
