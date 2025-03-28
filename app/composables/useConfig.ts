@@ -1,3 +1,8 @@
+export enum ETheme {
+  stars = "stars",
+  earth = "earth",
+}
+
 type Config = {
   darkMode: boolean;
   initialTransparentCode: boolean;
@@ -5,6 +10,9 @@ type Config = {
     enabled: boolean;
     mode: "ease-in" | "instant";
     speed: number;
+  };
+  theme: {
+    selected: ETheme;
   };
 };
 
@@ -15,6 +23,9 @@ const defaultConfig: Config = {
     enabled: true,
     mode: "instant",
     speed: 10,
+  },
+  theme: {
+    selected: ETheme.stars,
   },
 };
 
@@ -35,6 +46,23 @@ export default function useConfig() {
   const isAnimationEnabled = computed(() => config.value.animation.enabled);
 
   const animation = computed(() => config.value.animation);
+
+  const selectedTheme = computed(() => config.value.theme.selected);
+
+  const returnThemeComponent = computed(() => {
+    switch (selectedTheme.value) {
+      case ETheme.stars:
+        return defineAsyncComponent(
+          () => import("../components/Theme/Stars.vue"),
+        );
+      case ETheme.earth:
+        return defineAsyncComponent(
+          () => import("../components/Theme/Earth.vue"),
+        );
+      default:
+        return null;
+    }
+  });
 
   // Reload in those cases
   watch(isAnimationEnabled, async () => {
@@ -79,5 +107,6 @@ export default function useConfig() {
     isAnimationEnabled,
     animation,
     reloading,
+    returnThemeComponent,
   };
 }
