@@ -1,4 +1,4 @@
-import { getRandomColorFromArray } from "~/utils/general.util";
+import { getRandomColorFromArray, onCheckValidUrl } from "~/utils/general.util";
 
 const containerEl = ref<HTMLElement | null>(null);
 const url = ref<string>("https://bitly.com");
@@ -90,9 +90,13 @@ export default function useCode() {
     });
   };
 
+  const returnValidUrl = computed(() => {
+    return onCheckValidUrl(url.value) ? url.value : null;
+  });
+
   onMounted(async () => {
     await onInit();
   });
 
-  return { containerEl, url, image, urlDebounced, onInit };
+  return { containerEl, url, returnValidUrl, image, urlDebounced, onInit };
 }

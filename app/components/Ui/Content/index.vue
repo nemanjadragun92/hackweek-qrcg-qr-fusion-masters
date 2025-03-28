@@ -1,13 +1,25 @@
 <template>
   <div class="flex items-center justify-center flex-1 relative overflow-hidden">
     <div id="content" class="absolute inset-0 w-full h-full" />
-    <div class="size-[400px] relative z-10">
-      <div
+    <div class="size-[400px] relative z-10 group">
+      <a
         id="qr_code_container"
         ref="containerEl"
-        class="wrapper size-[400px]"
+        target="_blank"
+        :href="returnValidUrl || ''"
+        class="wrapper size-[400px] block"
         v-html="data"
       />
+      <div
+        v-if="returnValidUrl"
+        class="absolute -top-3 left-0 right-0 justify-center hidden group-hover:flex"
+      >
+        <div
+          class="max-w-xs truncate p-1 text-md font-medium bg-black text-orange-500 border border-orange-500/50"
+        >
+          {{ returnValidUrl }}
+        </div>
+      </div>
       <div
         v-if="image"
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
@@ -19,7 +31,7 @@
 </template>
 
 <script lang="ts" setup>
-const { containerEl, urlDebounced, image, onInit } = useCode();
+const { containerEl, returnValidUrl, urlDebounced, image, onInit } = useCode();
 // https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif
 // const image = "https://i.giphy.com/3gRWfmZMI0Cb2Hoaye.webp";
 

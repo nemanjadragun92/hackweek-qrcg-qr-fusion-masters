@@ -102,3 +102,12 @@ export const getRandomColorFromArray = (colors: string[]): string => {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex] as string;
 };
+
+export const onCheckValidUrl = (url: string): boolean => {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+};
