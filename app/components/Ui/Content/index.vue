@@ -2,7 +2,12 @@
   <div class="flex items-center justify-center flex-1 relative overflow-hidden">
     <div id="content" class="absolute inset-0 w-full h-full" />
     <div class="size-[400px] relative z-10">
-      <div ref="containerEl" class="wrapper size-[400px]" v-html="data" />
+      <div
+        id="qr_code_container"
+        ref="containerEl"
+        class="wrapper size-[400px]"
+        v-html="data"
+      />
       <div
         v-if="image"
         class="absolute inset-0 flex items-center justify-center pointer-events-none"

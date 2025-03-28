@@ -92,6 +92,25 @@
           </div>
         </div>
       </div>
+      <Teleport to="body">
+        <div
+          v-if="isScannable !== null"
+          class="fixed top-4 left-0 right-0 flex justify-center w-full z-50"
+        >
+          <div
+            class="text-white w-sm py-3 px-6 border text-center font-medium rounded"
+            :class="{
+              'bg-green-500/90 border-green-600': isScannable,
+              'bg-red-500/90 border-red-600': !isScannable,
+            }"
+          >
+            <template v-if="isScannable">QR Code is scannable!</template>
+            <template v-else
+              >QR Code is <strong>not</strong> scannable</template
+            >
+          </div>
+        </div>
+      </Teleport>
     </div>
   </aside>
 </template>
@@ -100,4 +119,38 @@
 const { url, onInit } = useCode();
 
 const { config, isAnimationEnabled } = useConfig();
+const isScannable = ref<boolean | null>(null);
+
+// watch(
+//   reloading,
+//   async () => {
+//     await nextTick();
+//     setTimeout(() => {
+//       onCheckIfCodeIsScannable();
+//     }, 1000);
+//   },
+//   {
+//     immediate: true,
+//   },
+// );
+
+useIntervalFn(async () => {
+  onCheckIfCodeIsScannable();
+}, 2500);
+
+const onCheckIfCodeIsScannable = () => {
+  const el = document.getElementById("qr_code_container");
+  const svgElement = el?.children[0]?.children[0] as SVGElement | null;
+
+  if (svgElement instanceof SVGElement) {
+    isQRCodeScannable(svgElement).then((isValid) => {
+      isScannable.value = !!isValid;
+      console.log(
+        isValid ? "QR Code is scannable!" : "QR Code is not scannable!",
+      );
+    });
+  } else {
+    console.log("QR code container or SVG element not found");
+  }
+};
 </script>
