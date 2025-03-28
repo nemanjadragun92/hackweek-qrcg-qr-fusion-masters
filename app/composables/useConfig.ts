@@ -58,6 +58,10 @@ const config = useLocalStorage<Config>(
 const reloading = ref(false);
 
 export default function useConfig() {
+  const onResetConfig = () => {
+    config.value = JSON.parse(JSON.stringify(defaultConfig));
+  };
+
   const isDarkMode = computed(() => config.value.darkMode);
 
   const isCodeTransparentOnLoad = computed(
@@ -172,6 +176,7 @@ export default function useConfig() {
 
   return {
     config,
+    onResetConfig,
     isDarkMode,
     isCodeTransparentOnLoad,
     isAnimationEnabled,

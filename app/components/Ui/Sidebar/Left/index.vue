@@ -112,13 +112,20 @@
         </div>
       </Teleport>
     </div>
-    <div class="py-2">
+    <div class="py-2 space-y-2">
       <button
         type="button"
         class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
         @click="showShareModal = true"
       >
         Generate Embedded Code
+      </button>
+      <button
+        type="button"
+        class="inline-block w-full border border-red-600 bg-red-600 px-12 py-3 text-sm font-medium text-white hover:bg-red-500 focus:ring-3 focus:outline-hidden"
+        @click="onResetConfig"
+      >
+        Reset All Settings
       </button>
     </div>
   </aside>
@@ -128,7 +135,7 @@
 <script lang="ts" setup>
 const { url, onInit } = useCode();
 
-const { config, isAnimationEnabled } = useConfig();
+const { config, isAnimationEnabled, onResetConfig } = useConfig();
 const isScannable = ref<boolean | null>(null);
 
 const showShareModal = ref(false);
