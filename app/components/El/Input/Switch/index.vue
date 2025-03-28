@@ -4,7 +4,7 @@
       props.label
     }}</span>
     <label
-      class="group relative block h-6 w-12 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-green-500"
+      class="group relative block h-6 w-12 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-orange-500"
     >
       <input
         :id="props.name"

@@ -48,7 +48,7 @@
                   type="button"
                   class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
                   :class="{
-                    'text-green-500': config.animation.mode === 'instant',
+                    'text-orange-500': config.animation.mode === 'instant',
                   }"
                   @click="config.animation.mode = 'instant'"
                 >
@@ -59,7 +59,7 @@
                   type="button"
                   class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
                   :class="{
-                    'text-green-500': config.animation.mode === 'ease-in',
+                    'text-orange-500': config.animation.mode === 'ease-in',
                   }"
                   @click="config.animation.mode = 'ease-in'"
                 >
@@ -84,7 +84,7 @@
           <div v-else>
             <button
               type="button"
-              class="inline-block w-full border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-green-500 focus:ring-3 focus:outline-hidden"
+              class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
               @click="onInit"
             >
               Generate new version
@@ -115,7 +115,7 @@
     <div class="py-2">
       <button
         type="button"
-        class="inline-block w-full border border-green-600 bg-green-600 px-12 py-3 text-sm font-medium text-white hover:bg-green-500 focus:ring-3 focus:outline-hidden"
+        class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
         @click="onInit"
       >
         Generate Embedded Code

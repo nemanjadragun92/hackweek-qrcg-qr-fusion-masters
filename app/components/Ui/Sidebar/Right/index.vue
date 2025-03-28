@@ -13,7 +13,7 @@
             type="button"
             class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
             :class="{
-              'text-green-500': config.theme.selected === ETheme.default,
+              'text-orange-500': config.theme.selected === ETheme.default,
             }"
             @click="config.theme.selected = ETheme.default"
           >
@@ -24,7 +24,7 @@
             type="button"
             class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
             :class="{
-              'text-green-500': config.theme.selected === ETheme.stars,
+              'text-orange-500': config.theme.selected === ETheme.stars,
             }"
             @click="config.theme.selected = ETheme.stars"
           >
@@ -35,7 +35,7 @@
             type="button"
             class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
             :class="{
-              'text-green-500': config.theme.selected === ETheme.earth,
+              'text-orange-500': config.theme.selected === ETheme.earth,
             }"
             @click="config.theme.selected = ETheme.earth"
           >
