@@ -27,16 +27,20 @@ export default function useCode() {
     const backgroundColor = isDarkMode.value ? "#000000" : "#ffffff";
     const svgElement = containerEl.value?.firstChild as SVGSVGElement;
     const bg = svgElement?.querySelector('rect[width="2000"]');
-    bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.75));
+    // bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.75)); // TODO: Previous value
+    bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.1)); // TODO: New value once added BG support
     const childNodes = Array.from(
       svgElement?.firstChild?.nextSibling?.childNodes ?? [],
     );
     const filteredNodes = childNodes?.slice(2) || [];
     const squares = svgElement?.querySelectorAll("#Ebene_1") ?? [];
-
     for (const node of filteredNodes) {
       const rect = node as Element;
-      if (["rect", "polygon"].includes(rect.nodeName)) {
+      const className = rect?.getAttribute?.("class") || "";
+      if (
+        ["rect", "polygon"].includes(rect.nodeName) &&
+        !className.includes("readonly")
+      ) {
         if (isAnimationEnabled.value && animation.value.mode === "ease-in") {
           await promiseTimeout(animation.value.speed);
         }
@@ -49,7 +53,7 @@ export default function useCode() {
             getRandomColorFromArray(selectedColors.value),
           );
         }
-        // rect.classList?.add?.("size-9"); // TODO: Add size to config
+        // rect.classList?.add?.("size-9"); // TODO: Add size to config and also add to theme.background.ts same check
         // rect.classList?.add?.("fill-red-500"); // TODO: Add solid color to config
         switch (selectedTheme.value) {
           case ETheme.stars:
@@ -88,6 +92,10 @@ export default function useCode() {
         }
       });
     });
+
+    // TODO: Automatically calculate total amount of dots based on last rect x, y and rect width, height
+    // Also add missing dots maybe just for theme.background.util.ts
+    // appendMissingDots(svgElement.children?.[0], 1000);
   };
 
   const returnValidUrl = computed(() => {
