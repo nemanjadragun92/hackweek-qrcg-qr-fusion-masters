@@ -21,6 +21,16 @@
           label="Make QR code on initial load transparent"
         />
       </div>
+      <div>
+        <ElInputSwitch
+          v-model="config.colors.random"
+          name="colorsRandom"
+          label="Enable Random Colors"
+        />
+      </div>
+      <div v-if="!config.colors.random">
+        <ElInputColors />
+      </div>
       <div class="bg-(--text-color)/10 border border-(--text-color)/20 p-4">
         <div class="space-y-4">
           <ElInputSwitch

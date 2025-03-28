@@ -11,6 +11,10 @@ type Config = {
     mode: "ease-in" | "instant";
     speed: number;
   };
+  colors: {
+    random: boolean;
+    selected: string[];
+  };
   theme: {
     selected: ETheme;
     config: { [key in ETheme]: any };
@@ -24,6 +28,10 @@ const defaultConfig: Config = {
     enabled: true,
     mode: "instant",
     speed: 2,
+  },
+  colors: {
+    random: true,
+    selected: ["#000000"],
   },
   theme: {
     selected: ETheme.stars,
