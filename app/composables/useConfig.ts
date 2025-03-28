@@ -23,6 +23,8 @@ const config = useLocalStorage<Config>(
   JSON.parse(JSON.stringify(defaultConfig)),
 );
 
+const reloading = ref(false);
+
 export default function useConfig() {
   const isDarkMode = computed(() => config.value.darkMode);
 
@@ -36,21 +38,28 @@ export default function useConfig() {
 
   // Reload in those cases
   watch(isAnimationEnabled, async () => {
-    location.reload();
+    await onReload();
   });
 
   watch(isDarkMode, async () => {
-    location.reload();
+    await onReload();
   });
 
   watch(isCodeTransparentOnLoad, async () => {
-    location.reload();
+    await onReload();
   });
 
   const onChangeAnimationMode = computed(() => config.value.animation.mode);
   watch(onChangeAnimationMode, async () => {
-    location.reload();
+    await onReload();
   });
+
+  const onReload = async () => {
+    // location.reload();
+    reloading.value = true;
+    await promiseTimeout(50);
+    reloading.value = false;
+  };
 
   return {
     config,
@@ -58,5 +67,6 @@ export default function useConfig() {
     isCodeTransparentOnLoad,
     isAnimationEnabled,
     animation,
+    reloading,
   };
 }

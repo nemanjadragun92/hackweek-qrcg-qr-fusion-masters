@@ -1,7 +1,12 @@
-export default function useCode(containerEl: Ref<HTMLElement | null>) {
+const containerEl = ref<HTMLElement | null>(null);
+const url = ref<string>("https://qrapp-legacy.egodit.org");
+const urlDebounced = refDebounced(url, 500);
+
+export default function useCode() {
   const { isDarkMode, isAnimationEnabled, animation } = useConfig();
 
   const onInit = async () => {
+    if (!containerEl.value) return;
     addStars(5, 3000);
     await nextTick();
     const backgroundColor = isDarkMode.value ? "#000000" : "#ffffff";
@@ -128,6 +133,8 @@ export default function useCode(containerEl: Ref<HTMLElement | null>) {
     svgContainer.style.zIndex = "1";
     const element = document.getElementById("content");
 
+    if (!element) return;
+
     if (!element!.childNodes.length) {
       element!.appendChild(svgContainer);
       for (let i = 0; i < amount; i++) {
@@ -165,5 +172,5 @@ export default function useCode(containerEl: Ref<HTMLElement | null>) {
     }
   };
 
-  return { onInit };
+  return { containerEl, url, urlDebounced, onInit };
 }
