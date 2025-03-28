@@ -20,7 +20,8 @@ export const appendMissingDots = (
     fakeDot.setAttribute("width", `${size}`);
     fakeDot.setAttribute("height", `${size}`);
     fakeDot.setAttribute("fill", fakeDotColor);
-    fakeDot.classList.add("readonly", "size-9");
+    fakeDot.classList.add("readonly");
+    // fakeDot.classList.add("readonly", "size-9");
     x += size;
     if (x > endPoint) {
       x = startPoint;

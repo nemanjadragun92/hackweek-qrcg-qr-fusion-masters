@@ -28,7 +28,7 @@ export default function useCode() {
     const svgElement = containerEl.value?.firstChild as SVGSVGElement;
     const bg = svgElement?.querySelector('rect[width="2000"]');
     // bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.75)); // TODO: Previous value
-    bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.1)); // TODO: New value once added BG support
+    bg?.setAttribute("fill", "transparent"); // TODO: New value once added BG support
     const childNodes = Array.from(
       svgElement?.firstChild?.nextSibling?.childNodes ?? [],
     );
@@ -54,7 +54,7 @@ export default function useCode() {
             getRandomColorFromArray(selectedColors.value),
           );
         }
-        rect.classList?.add?.("size-9"); // TODO: Add size to config and also add to theme.background.ts same check
+        // rect.classList?.add?.("size-9"); // TODO: Add size to config and also add to theme.background.ts same check
         switch (selectedTheme.value) {
           case ETheme.stars:
             themeStarsGenerateStars(rect, backgroundColor);
