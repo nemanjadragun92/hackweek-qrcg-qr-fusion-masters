@@ -8,10 +8,15 @@
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
         <div
-          class="size-[400px] bg-transparent flex items-center justify-center"
+          v-if="selectedThemeConfig.backgroundImage"
+          class="size-[400px] flex items-center justify-center"
+          :style="{
+            backgroundColor:
+              selectedThemeConfig.backgroundColor || 'transparent',
+          }"
         >
           <img
-            src="https://cdn4.iconfinder.com/data/icons/miu-square-flat-social/60/whatsapp-square-social-media-512.png"
+            :src="selectedThemeConfig.backgroundImage"
             alt="BG"
             class="size-[350px] object-cover"
           />
@@ -55,6 +60,7 @@ const {
   isCodeTransparentOnLoad,
   isAnimationEnabled,
   selectedTheme,
+  selectedThemeConfig,
 } = useConfig();
 
 let color = isDarkMode.value ? "#FFFFFF" : "#000000";

@@ -11,6 +11,7 @@ export default function useCode() {
     isAnimationEnabled,
     animation,
     selectedTheme,
+    selectedThemeConfig,
     isRandomColorEnabled,
     selectedColors,
   } = useConfig();
@@ -119,7 +120,7 @@ export default function useCode() {
         width,
         startPoint,
         endPoint,
-        "rgba(255,255,255,0.5)",
+        selectedThemeConfig.value.fakeDotsColor || "rgba(255,255,255,0.5)",
       );
     }
   };

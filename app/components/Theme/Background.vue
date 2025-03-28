@@ -1,10 +1,36 @@
 <template>
   <div class="flex flex-col gap-2">
-    Background Theme
     <div>
-      dsadas
-      <button type="button" @click="onCheckIfCodeWithBackgroundScannable">
-        Test
+      <ElInput
+        v-model="config.theme.config[ETheme.background].backgroundImage"
+        name="themeBackgroundBackgroundImage"
+        label="Background Image"
+        type="text"
+      />
+    </div>
+    <div>
+      <ElInput
+        v-model="config.theme.config[ETheme.background].backgroundColor"
+        name="themeBackgroundBackgroundColor"
+        label="Background Color"
+        type="text"
+      />
+    </div>
+    <div>
+      <ElInput
+        v-model="config.theme.config[ETheme.background].fakeDotsColor"
+        name="themeBackgroundFakeDotsColor"
+        label="Fade Dots Color"
+        type="text"
+      />
+    </div>
+    <div>
+      <button
+        type="button"
+        class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
+        @click="onCheckIfCodeWithBackgroundScannable"
+      >
+        Check if QR Code is Scanable
       </button>
     </div>
   </div>
@@ -69,6 +95,8 @@ onMounted(async () => {
   image.value = "https://media.tenor.com/ipP4Q7xYznwAAAAj/araslot-whatsapp.gif";
   config.value.colors.random = false;
   config.value.colors.selected = ["#056100"];
+  config.value.theme.config[ETheme.background].backgroundImage =
+    "https://cdn4.iconfinder.com/data/icons/miu-square-flat-social/60/whatsapp-square-social-media-512.png";
 });
 
 onUnmounted(() => {

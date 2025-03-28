@@ -47,7 +47,11 @@ const defaultConfig: Config = {
         density: 5,
         amount: 3000,
       },
-      [ETheme.background]: {},
+      [ETheme.background]: {
+        backgroundColor: "transparent",
+        backgroundImage: "",
+        fakeDotsColor: "rgba(255,255,255,0.5)",
+      },
     },
   },
 };
