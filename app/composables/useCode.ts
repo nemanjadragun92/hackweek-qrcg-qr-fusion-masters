@@ -32,6 +32,7 @@ export default function useCode() {
     const childNodes = Array.from(
       svgElement?.firstChild?.nextSibling?.childNodes ?? [],
     );
+    const svgSquaresElement = svgElement?.querySelectorAll("#Ebene_1");
     const filteredNodes = childNodes?.slice(2) || [];
     const squares = svgElement?.querySelectorAll("#Ebene_1") ?? [];
     for (const node of filteredNodes) {
@@ -53,8 +54,7 @@ export default function useCode() {
             getRandomColorFromArray(selectedColors.value),
           );
         }
-        // rect.classList?.add?.("size-9"); // TODO: Add size to config and also add to theme.background.ts same check
-        // rect.classList?.add?.("fill-red-500"); // TODO: Add solid color to config
+        rect.classList?.add?.("size-9"); // TODO: Add size to config and also add to theme.background.ts same check
         switch (selectedTheme.value) {
           case ETheme.stars:
             themeStarsGenerateStars(rect, backgroundColor);
@@ -95,7 +95,25 @@ export default function useCode() {
 
     // TODO: Automatically calculate total amount of dots based on last rect x, y and rect width, height
     // Also add missing dots maybe just for theme.background.util.ts
-    // appendMissingDots(svgElement.children?.[0], 1000);
+    const svgContainer = svgElement.children?.[0];
+    const width = parseInt(
+      svgContainer?.children?.[2]?.getAttribute("width") || "0",
+    );
+    const startPoint = parseInt(
+      svgSquaresElement?.[0]?.getAttribute("x") || "200",
+    );
+    const endPoint = parseInt(
+      svgContainer?.children?.[svgContainer.children.length - 7]?.getAttribute(
+        "x",
+      ) || "1736",
+    );
+    appendMissingDots(
+      svgContainer,
+      width,
+      startPoint,
+      endPoint,
+      "rgba(255,255,255,0.5)",
+    );
   };
 
   const returnValidUrl = computed(() => {
