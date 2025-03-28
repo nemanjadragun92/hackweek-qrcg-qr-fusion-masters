@@ -20,6 +20,10 @@ const { isDarkMode, reloading } = useConfig();
 </script>
 
 <style>
+body {
+  overflow: hidden;
+}
+
 :root {
   --bg-color: white;
   --text-color: black;
