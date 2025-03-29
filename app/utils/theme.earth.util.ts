@@ -1,3 +1,12 @@
+import { getRandomColorFromArray } from "~/utils/general.util";
+
+const {
+  selectedTheme,
+  selectedThemeConfig,
+  isRandomColorEnabled,
+  selectedColors,
+} = useConfig();
+
 export const themeEarthGenerateGlobe = (rect: Element) => {
   const width = parseFloat(rect.getAttribute?.("width") || "0");
   const height = parseFloat(rect.getAttribute?.("height") || "0");
@@ -39,18 +48,30 @@ const themeEarthGeneratePlanetsBackground = (
       planet.setAttribute("cy", centerY.toString());
       planet.setAttribute("r", radius.toString());
       planet.classList.add("opacity-75");
-      planet.setAttribute("fill", getRandomColor("#000000")); // Assuming background color is black
+      if (isRandomColorEnabled.value) {
+        planet.setAttribute?.("fill", getRandomColor("#000000"));
+      } else {
+        planet.setAttribute?.(
+          "fill",
+          getRandomColorFromArray(selectedColors.value),
+        );
+      }
 
       svgContainer.appendChild(planet);
     }
   } else {
     for (const planet of element!.querySelectorAll("circle")) {
-      planet.setAttribute("fill", getRandomColor("#000000"));
+      if (isRandomColorEnabled.value) {
+        planet.setAttribute?.("fill", getRandomColor("#000000"));
+      } else {
+        planet.setAttribute?.(
+          "fill",
+          getRandomColorFromArray(selectedColors.value),
+        );
+      }
     }
   }
 };
-
-const { selectedTheme, selectedThemeConfig } = useConfig();
 
 export const themeEarthInit = () => {
   if (selectedTheme.value === ETheme.earth) {

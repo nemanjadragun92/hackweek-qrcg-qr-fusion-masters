@@ -26,6 +26,11 @@
 const { config } = useConfig();
 const { image } = useCode();
 
-image.value =
-  "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif?20201022124448";
+onMounted(async () => {
+  await nextTick();
+  image.value =
+    "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif?20201022124448";
+  config.value.colors.random = false;
+  config.value.colors.selected = ["#4278f5", "#1aff40"];
+});
 </script>
