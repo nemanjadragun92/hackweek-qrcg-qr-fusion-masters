@@ -50,6 +50,10 @@ const defaultConfig: Config = {
       [ETheme.background]: {
         backgroundColor: "transparent",
         backgroundImage: "",
+        backgroundFit: "cover",
+        backgroundPositionY: 0,
+        backgroundPositionX: 0,
+        backgroundSize: 350,
         fakeDotsColor: "rgba(255,255,255,0.5)",
       },
     },

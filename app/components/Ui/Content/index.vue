@@ -5,11 +5,11 @@
       <!--TOOD: Add for theme.background.util.ts type custom bg to set as well as image-->
       <div
         v-if="selectedTheme === ETheme.background"
-        class="absolute inset-0 flex items-center justify-center pointer-events-none"
+        class="fixed inset-0 flex items-center justify-center pointer-events-none"
       >
         <div
           v-if="selectedThemeConfig.backgroundImage"
-          class="size-[400px] flex items-center justify-center"
+          class="flex items-center justify-center"
           :style="{
             backgroundColor:
               selectedThemeConfig.backgroundColor || 'transparent',
@@ -18,7 +18,14 @@
           <img
             :src="selectedThemeConfig.backgroundImage"
             alt="BG"
-            class="size-[350px] object-cover"
+            class="relative"
+            :style="{
+              width: `${selectedThemeConfig.backgroundSize}px`,
+              height: `${selectedThemeConfig.backgroundSize}px`,
+              top: `${selectedThemeConfig.backgroundPositionY}px`,
+              left: `${selectedThemeConfig.backgroundPositionX}px`,
+              objectFit: selectedThemeConfig.backgroundFit,
+            }"
           />
         </div>
       </div>

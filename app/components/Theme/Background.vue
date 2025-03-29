@@ -10,6 +10,56 @@
     </div>
     <div>
       <ElInput
+        v-model.number="config.theme.config[ETheme.background].backgroundSize"
+        name="themeBackgroundBackgroundSize"
+        label="Background Size"
+        type="number"
+        :min="50"
+        :max="2000"
+      />
+    </div>
+    <div>
+      <label for="objectFit">
+        <span class="text-sm font-medium">Object Fit:</span>
+        <select
+          id="objectFit"
+          v-model="config.theme.config[ETheme.background].backgroundFit"
+          class="mt-0.5 w-full bg-(--bg-color)/10 border-(--text-color)/25 sm:text-sm"
+        >
+          <option value="fill">fill</option>
+          <option value="contain">contain</option>
+          <option value="cover">cover</option>
+          <option value="none">none</option>
+          <option value="scale-down">scale-down</option>
+          <option value="inherit">inherit</option>
+          <option value="initial">initial</option>
+          <option value="revert">revert</option>
+          <option value="unset">unset</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <ElInput
+        v-model.number="
+          config.theme.config[ETheme.background].backgroundPositionY
+        "
+        name="themeBackgroundBackgroundPositionY"
+        label="Background Position Y"
+        type="number"
+      />
+    </div>
+    <div>
+      <ElInput
+        v-model.number="
+          config.theme.config[ETheme.background].backgroundPositionX
+        "
+        name="themeBackgroundBackgroundPositionX"
+        label="Background Position X"
+        type="number"
+      />
+    </div>
+    <div>
+      <ElInput
         v-model="config.theme.config[ETheme.background].backgroundColor"
         name="themeBackgroundBackgroundColor"
         label="Background Color"
