@@ -3,12 +3,11 @@
 </template>
 
 <script lang="ts" setup>
-const { image } = useCode();
 const { config } = useConfig();
 
 onMounted(async () => {
   await nextTick();
-  image.value = "https://cdn.worldvectorlogo.com/logos/bitly.svg";
+  config.value.image = "https://cdn.worldvectorlogo.com/logos/bitly.svg";
   config.value.colors.random = false;
   config.value.colors.selected = ["#f0885c", "#ffffff"];
 });

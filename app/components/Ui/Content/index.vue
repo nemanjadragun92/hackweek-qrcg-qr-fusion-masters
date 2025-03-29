@@ -48,21 +48,22 @@
         </div>
       </div>
       <div
-        v-if="image"
+        v-if="config.image"
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
-        <img :src="image" alt="" class="size-16" />
+        <img :src="config.image" alt="" class="size-16" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const { containerEl, returnValidUrl, urlDebounced, image, onInit } = useCode();
+const { containerEl, returnValidUrl, urlDebounced, onInit } = useCode();
 // https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif
 // const image = "https://i.giphy.com/3gRWfmZMI0Cb2Hoaye.webp";
 
 const {
+  config,
   isDarkMode,
   isCodeTransparentOnLoad,
   isAnimationEnabled,

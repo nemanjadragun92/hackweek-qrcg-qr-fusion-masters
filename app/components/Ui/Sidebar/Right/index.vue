@@ -58,7 +58,12 @@
       <div class="space-y-2">
         <h2 class="text-xl font-semibold">Configuration</h2>
         <div>
-          <ElInput v-model="image" name="image" label="Image" type="text" />
+          <ElInput
+            v-model="config.image"
+            name="image"
+            label="Image"
+            type="text"
+          />
         </div>
         <component :is="returnThemeComponent" v-if="returnThemeComponent" />
       </div>
@@ -69,6 +74,5 @@
 <script setup lang="ts">
 import { ETheme } from "~/composables/useConfig";
 
-const { image } = useCode();
 const { config, returnThemeComponent } = useConfig();
 </script>

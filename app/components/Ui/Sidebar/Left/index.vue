@@ -5,7 +5,12 @@
     <h1 class="font-semibold text-2xl">Fusion Masters</h1>
     <div class="space-y-4 overflow-auto h-full">
       <div>
-        <ElInput v-model="url" name="url" label="Text / URL" type="text" />
+        <ElInput
+          v-model="config.url"
+          name="url"
+          label="Text / URL"
+          type="text"
+        />
       </div>
       <div>
         <ElInputSwitch
@@ -133,7 +138,7 @@
 </template>
 
 <script lang="ts" setup>
-const { url, onInit } = useCode();
+const { onInit } = useCode();
 
 const { config, isAnimationEnabled, onResetConfig, selectedTheme } =
   useConfig();

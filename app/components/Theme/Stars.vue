@@ -24,11 +24,10 @@
 
 <script lang="ts" setup>
 const { config } = useConfig();
-const { image } = useCode();
 
 onMounted(async () => {
   await nextTick();
-  image.value = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
+  config.value.image = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
   config.value.colors.random = true;
 });
 </script>

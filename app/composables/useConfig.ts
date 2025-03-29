@@ -7,6 +7,8 @@ export enum ETheme {
 
 type Config = {
   darkMode: boolean;
+  url: string;
+  image: string;
   initialTransparentCode: boolean;
   animation: {
     enabled: boolean;
@@ -25,6 +27,8 @@ type Config = {
 
 const defaultConfig: Config = {
   darkMode: true,
+  url: "https://bitly.com",
+  image: "https://cdn.worldvectorlogo.com/logos/bitly.svg",
   initialTransparentCode: true,
   animation: {
     enabled: true,
@@ -64,6 +68,10 @@ const config = useLocalStorage<Config>(
   "config",
   JSON.parse(JSON.stringify(defaultConfig)),
 );
+
+const returnUrl = computed(() => config.value.url);
+
+const urlDebounced = refDebounced(returnUrl, 500);
 
 const reloading = ref(false);
 
@@ -201,5 +209,7 @@ export default function useConfig() {
     selectedThemeConfig,
     isRandomColorEnabled,
     selectedColors,
+    urlDebounced,
+    url: returnUrl,
   };
 }

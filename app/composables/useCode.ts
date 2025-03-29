@@ -1,9 +1,6 @@
 import { getRandomColorFromArray, onCheckValidUrl } from "~/utils/general.util";
 
 const containerEl = ref<HTMLElement | null>(null);
-const url = ref<string>("https://bitly.com");
-const image = ref<string>("https://cdn.worldvectorlogo.com/logos/bitly.svg");
-const urlDebounced = refDebounced(url, 500);
 
 export default function useCode() {
   const {
@@ -14,6 +11,8 @@ export default function useCode() {
     selectedThemeConfig,
     isRandomColorEnabled,
     selectedColors,
+    url,
+    urlDebounced,
   } = useConfig();
 
   const beforeInitConfig = () => {
@@ -133,5 +132,5 @@ export default function useCode() {
     await onInit();
   });
 
-  return { containerEl, url, returnValidUrl, image, urlDebounced, onInit };
+  return { containerEl, url, returnValidUrl, urlDebounced, onInit };
 }

@@ -138,11 +138,11 @@ const onCheckIfCodeWithBackgroundScannable = async () => {
 };
 
 const { config } = useConfig();
-const { image } = useCode();
 
 onMounted(async () => {
   await nextTick();
-  image.value = "https://media.tenor.com/ipP4Q7xYznwAAAAj/araslot-whatsapp.gif";
+  config.value.image =
+    "https://media.tenor.com/ipP4Q7xYznwAAAAj/araslot-whatsapp.gif";
   config.value.colors.random = false;
   config.value.colors.selected = ["#056100"];
   config.value.theme.config[ETheme.background].backgroundImage =

@@ -24,11 +24,10 @@
 
 <script lang="ts" setup>
 const { config } = useConfig();
-const { image } = useCode();
 
 onMounted(async () => {
   await nextTick();
-  image.value =
+  config.value.image =
     "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif?20201022124448";
   config.value.colors.random = false;
   config.value.colors.selected = ["#4278f5", "#1aff40"];
