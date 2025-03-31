@@ -281,7 +281,7 @@
               <iframe
                 width="550"
                 height="550"
-                src="http://localhost:3000/share?config=eyJkYXJrTW9kZSI6dHJ1ZSwiaW5pdGlhbFRyYW5zcGFyZW50Q29kZSI6ZmFsc2UsImFuaW1hdGlvbiI6eyJlbmFibGVkIjp0cnVlLCJtb2RlIjoiaW5zdGFudCIsInNwZWVkIjoyfSwiY29sb3JzIjp7InJhbmRvbSI6ZmFsc2UsInNlbGVjdGVkIjpbIiNmMDg4NWMiLCIjZmZmZmZmIl19LCJ0aGVtZSI6eyJzZWxlY3RlZCI6InN0YXJzIiwiY29uZmlnIjp7ImRlZmF1bHQiOnt9LCJzdGFycyI6eyJkZW5zaXR5Ijo1LCJhbW91bnQiOjMwMDB9LCJlYXJ0aCI6eyJkZW5zaXR5Ijo1LCJhbW91bnQiOjMwMDB9fX19"
+                src="http://localhost:3000/share?config=eyJkYXJrTW9kZSI6dHJ1ZSwidXJsIjoiaHR0cHM6Ly9iaXRseS5jb20iLCJpbWFnZSI6Imh0dHBzOi8vY2RuLndvcmxkdmVjdG9ybG9nby5jb20vbG9nb3MvYml0bHkuc3ZnIiwiaW5pdGlhbFRyYW5zcGFyZW50Q29kZSI6dHJ1ZSwiYW5pbWF0aW9uIjp7ImVuYWJsZWQiOnRydWUsIm1vZGUiOiJpbnN0YW50Iiwic3BlZWQiOjJ9LCJjb2xvcnMiOnsicmFuZG9tIjpmYWxzZSwic2VsZWN0ZWQiOlsiI2YwODg1YyIsIiNmZmZmZmYiXX0sInRoZW1lIjp7InNlbGVjdGVkIjoiZGVmYXVsdCIsImNvbmZpZyI6eyJkZWZhdWx0Ijp7fSwic3RhcnMiOnsiZGVuc2l0eSI6NSwiYW1vdW50IjozMDAwfSwiZWFydGgiOnsiZGVuc2l0eSI6NSwiYW1vdW50IjozMDAwfSwiYmFja2dyb3VuZCI6eyJiYWNrZ3JvdW5kQ29sb3IiOiJ0cmFuc3BhcmVudCIsImJhY2tncm91bmRJbWFnZSI6IiIsImJhY2tncm91bmRGaXQiOiJjb3ZlciIsImJhY2tncm91bmRQb3NpdGlvblkiOjAsImJhY2tncm91bmRQb3NpdGlvblgiOjAsImJhY2tncm91bmRTaXplIjozNTAsImZha2VEb3RzQ29sb3IiOiJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkifX19fQ=="
                 title="Powered by QRFusionMasters"
                 frameborder="0"
               />

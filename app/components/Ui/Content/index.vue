@@ -38,20 +38,26 @@
         v-html="data"
       />
       <div
+        v-if="config.image"
+        class="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        <!--        <div-->
+        <!--          class="box size-full mix-blend-screen absolute inset-0 z-10"-->
+        <!--          :style="{-->
+        <!--            background: 'linear-gradient(90deg, red, green)',-->
+        <!--          }"-->
+        <!--        />-->
+        <img :src="config.image" alt="" class="size-16 z-20" />
+      </div>
+      <div
         v-if="returnValidUrl"
-        class="absolute -top-3 left-0 right-0 justify-center hidden group-hover:flex"
+        class="absolute -top-3 left-0 right-0 justify-center hidden group-hover:flex z-30"
       >
         <div
           class="max-w-xs truncate p-1 text-md font-medium bg-black text-orange-500 border border-orange-500/50"
         >
           {{ returnValidUrl }}
         </div>
-      </div>
-      <div
-        v-if="config.image"
-        class="absolute inset-0 flex items-center justify-center pointer-events-none"
-      >
-        <img :src="config.image" alt="" class="size-16" />
       </div>
     </div>
   </div>
@@ -117,3 +123,18 @@ watch(isAnimationEnabled, (_animationEnabled) => {
   }
 });
 </script>
+
+<style>
+.box {
+  background: linear-gradient(
+    45deg,
+    rgb(51, 102, 153),
+    rgb(255, 0, 204)
+  ) !important;
+  mask: radial-gradient(
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0) 16%,
+    rgb(0, 0, 0) 16%
+  ) !important;
+}
+</style>
