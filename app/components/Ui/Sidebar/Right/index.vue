@@ -82,12 +82,9 @@
           />
         </div>
         <div v-if="!config.colors.codeBackgroundGradientEnabled">
-          <ElInput
-            v-model="config.colors.codeBackgroundColor"
-            name="codeBackgroundColor"
-            label="Background Color"
-            type="text"
-          />
+          <ElInputColor v-model="config.colors.codeBackgroundColor">
+            Background color
+          </ElInputColor>
         </div>
         <div>
           <ElInputSwitch
