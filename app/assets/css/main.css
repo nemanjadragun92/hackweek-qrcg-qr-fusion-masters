@@ -28,5 +28,6 @@
     --text-black: #FFFFFF;
     --color-dark-primary: #FDFEFF;
     --color-begonia-700: #FA6E79;
+    --color-dark-tertiary: rgba(253, 254, 255, 0.7);
     --color-navy-50: rgba(4,116,205,0.1);
 }
