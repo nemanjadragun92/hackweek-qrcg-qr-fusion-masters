@@ -72,7 +72,7 @@
           <ElInput
             v-model="config.image"
             name="image"
-            label="Image"
+            label="Logo"
             type="text"
           />
         </div>

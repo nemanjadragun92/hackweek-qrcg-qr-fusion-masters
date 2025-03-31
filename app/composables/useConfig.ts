@@ -29,7 +29,7 @@ type Config = {
 const defaultConfig: Config = {
   darkMode: true,
   url: "https://bitly.com",
-  image: "https://cdn.worldvectorlogo.com/logos/bitly.svg",
+  image: "",
   initialTransparentCode: true,
   animation: {
     enabled: true,
@@ -38,7 +38,7 @@ const defaultConfig: Config = {
   },
   colors: {
     random: false,
-    selected: ["#f0885c", "#ffffff"],
+    selected: ["#ffffff"],
   },
   theme: {
     selected: ETheme.default,
