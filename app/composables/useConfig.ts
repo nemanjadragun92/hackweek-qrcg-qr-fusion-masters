@@ -56,6 +56,7 @@ const defaultConfig: Config = {
     codeBackgroundGradientFrom: "rgb(51, 102, 153)",
     codeBackgroundGradientVia: "transparent",
     codeBackgroundGradientTo: "rgb(255, 0, 204)",
+    // TODO: Move from, via, to (to array of colors instead)
   },
   theme: {
     selected: ETheme.default,
