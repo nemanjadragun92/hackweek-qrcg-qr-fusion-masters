@@ -1,8 +1,8 @@
 <template>
   <aside
-    class="bg-neutral-100 text-black border rounded-tr-lg rounded-br-lg border-(--color-standard) shadow-lg bottom-0 top-0 left-0 fixed z-20 w-sm flex flex-col gap-4"
+    class="bg-neutral-100 overflow-hidden border border-l-0 my-1 rounded-tr-lg rounded-br-lg border-(--color-standard) shadow-lg bottom-0 top-0 left-0 fixed z-20 w-sm flex flex-col gap-4"
   >
-    <h1 class="mt-8 px-6 font-bold text-4xl text-black">Fusion Masters</h1>
+    <h1 class="mt-8 px-6 font-bold text-4xl">Fusion Masters</h1>
     <div class="space-y-4 overflow-auto py-6 h-full px-6">
       <div>
         <ElInput

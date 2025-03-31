@@ -29,7 +29,11 @@
         <Link rel="apple-touch-startup-image" href="/favicon.png" />
       </Head>
       <Body
-        :class="isDarkMode ? 'bg-black text-white' : 'bg-white text-black'"
+        :class="
+          isDarkMode
+            ? 'darkMode bg-black text-(--color-lapis-50)'
+            : 'bg-(--color-lapis-50) text-(--color-dark-primary)'
+        "
       />
     </Html>
     <NuxtPage />

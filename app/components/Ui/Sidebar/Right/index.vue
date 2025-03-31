@@ -1,8 +1,8 @@
 <template>
   <aside
-    class="bg-neutral-100 text-black border rounded-tl-lg rounded-bl-lg border-(--color-standard) shadow-lg bottom-0 top-0 right-0 fixed z-20 w-sm flex flex-col gap-4"
+    class="bg-neutral-100 overflow-hidden border border-r-0 my-1 rounded-tl-lg rounded-bl-lg border-(--color-standard) shadow-lg bottom-0 top-0 right-0 fixed z-20 w-sm flex flex-col gap-4"
   >
-    <h2 class="mt-8 px-6 font-bold text-4xl text-black">Design</h2>
+    <h2 class="mt-8 px-6 font-bold text-4xl">Design</h2>
     <div class="space-y-4 overflow-auto py-6 h-full px-6">
       <div class="space-y-1">
         <div class="text-sm font-medium">Theme</div>

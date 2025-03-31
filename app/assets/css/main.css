@@ -3,6 +3,7 @@
 
 :root {
     --color-standard: #D3DCE0;
+    --color-lapis-50: #F9FAFB;
     --color-lapis-100: #F2F4F7;
     --color-lapis-200: #E9ECF2;
     --color-lapis-800: #53678C;
@@ -16,4 +17,16 @@
     --color-navy-50: #ECF6FE;
     --colors-green-100: #D9FFEE;
     --colors-green-500: #52C593;
+}
+
+:root .darkMode {
+    --color-standard: #4A5961;
+    --color-lapis-100: #000000;
+    --color-lapis-200: #4A5961;
+    --color-neutral-100: #181919;
+    --color-neutral-500: #4A5961;
+    --text-black: #FFFFFF;
+    --color-dark-primary: #FDFEFF;
+    --color-begonia-700: #FA6E79;
+    --color-navy-50: rgba(4,116,205,0.1);
 }
