@@ -19,84 +19,86 @@
           label="Dark Mode"
         />
       </div>
-      <div>
-        <ElInputSwitch
-          v-model="config.initialTransparentCode"
-          name="initialTransparentCode"
-          label="Make QR code on initial load transparent"
-        />
-      </div>
-      <div>
-        <ElInputSwitch
-          v-model="config.colors.random"
-          name="colorsRandom"
-          label="Enable Random Colors"
-        />
-      </div>
-      <div v-if="!config.colors.random">
-        <ElInputColors />
-      </div>
-      <div class="bg-(--text-color)/10 border border-(--text-color)/20 p-4">
-        <div class="space-y-4">
+      <template v-if="!config.colors.codeBackgroundGradientEnabled">
+        <div>
           <ElInputSwitch
-            v-model="config.animation.enabled"
-            name="animationEnabled"
-            label="Auto generate new version"
+            v-model="config.initialTransparentCode"
+            name="initialTransparentCode"
+            label="Make QR code on initial load transparent"
           />
-          <template v-if="isAnimationEnabled">
-            <div class="space-y-1">
-              <div class="text-sm font-medium">Mode</div>
-              <span
-                class="inline-flex divide-x divide-(--text-color)/25 overflow-hidden border border-(--text-color)/25 bg-(--bg-color)/10"
-              >
-                <button
-                  type="button"
-                  class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
-                  :class="{
-                    'text-orange-500': config.animation.mode === 'instant',
-                  }"
-                  @click="config.animation.mode = 'instant'"
+        </div>
+        <div>
+          <ElInputSwitch
+            v-model="config.colors.random"
+            name="colorsRandom"
+            label="Enable Random Colors"
+          />
+        </div>
+        <div v-if="!config.colors.random">
+          <ElInputColors />
+        </div>
+        <div class="bg-(--text-color)/10 border border-(--text-color)/20 p-4">
+          <div class="space-y-4">
+            <ElInputSwitch
+              v-model="config.animation.enabled"
+              name="animationEnabled"
+              label="Auto generate new version"
+            />
+            <template v-if="isAnimationEnabled">
+              <div class="space-y-1">
+                <div class="text-sm font-medium">Mode</div>
+                <span
+                  class="inline-flex divide-x divide-(--text-color)/25 overflow-hidden border border-(--text-color)/25 bg-(--bg-color)/10"
                 >
-                  Instant
-                </button>
+                  <button
+                    type="button"
+                    class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
+                    :class="{
+                      'text-orange-500': config.animation.mode === 'instant',
+                    }"
+                    @click="config.animation.mode = 'instant'"
+                  >
+                    Instant
+                  </button>
 
-                <button
-                  type="button"
-                  class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
-                  :class="{
-                    'text-orange-500': config.animation.mode === 'ease-in',
-                  }"
-                  @click="config.animation.mode = 'ease-in'"
-                >
-                  Ease In
-                </button>
-              </span>
-            </div>
-            <div v-if="config.animation.mode === 'ease-in'" class="space-y-1">
-              <div class="text-sm font-medium">
-                Speed ({{ config.animation.speed }}ms)
+                  <button
+                    type="button"
+                    class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
+                    :class="{
+                      'text-orange-500': config.animation.mode === 'ease-in',
+                    }"
+                    @click="config.animation.mode = 'ease-in'"
+                  >
+                    Ease In
+                  </button>
+                </span>
               </div>
-              <input
-                v-model="config.animation.speed"
-                class="w-full"
-                type="range"
-                step="1"
-                min="1"
-                max="100"
-              />
+              <div v-if="config.animation.mode === 'ease-in'" class="space-y-1">
+                <div class="text-sm font-medium">
+                  Speed ({{ config.animation.speed }}ms)
+                </div>
+                <input
+                  v-model="config.animation.speed"
+                  class="w-full"
+                  type="range"
+                  step="1"
+                  min="1"
+                  max="100"
+                />
+              </div>
+            </template>
+            <div v-else>
+              <button
+                type="button"
+                class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
+                @click="onInit"
+              >
+                Generate new version
+              </button>
             </div>
-          </template>
-          <div v-else>
-            <button
-              type="button"
-              class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
-              @click="onInit"
-            >
-              Generate new version
-            </button>
           </div>
         </div>
-      </div>
+      </template>
       <Teleport to="body">
         <div
           v-if="isScannable !== null"

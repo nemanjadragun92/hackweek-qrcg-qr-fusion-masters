@@ -22,9 +22,12 @@ export type Config = {
     selected: string[];
     codeBackgroundColor: string;
     codeBackgroundGradientEnabled: boolean;
+    codeBackgroundGradientPredefined: boolean;
+    codeBackgroundGradientAnimate: boolean;
     codeBackgroundGradientDegree: number;
-    codeBackgroundGradientStart: string;
-    codeBackgroundGradientEnd: string;
+    codeBackgroundGradientFrom: string;
+    codeBackgroundGradientVia: string;
+    codeBackgroundGradientTo: string;
   };
   theme: {
     selected: ETheme;
@@ -47,9 +50,12 @@ const defaultConfig: Config = {
     selected: ["#ffffff"],
     codeBackgroundColor: "#000000",
     codeBackgroundGradientEnabled: false,
+    codeBackgroundGradientPredefined: false,
+    codeBackgroundGradientAnimate: false,
     codeBackgroundGradientDegree: 45,
-    codeBackgroundGradientStart: "rgb(51, 102, 153)",
-    codeBackgroundGradientEnd: "rgb(255, 0, 204)",
+    codeBackgroundGradientFrom: "rgb(51, 102, 153)",
+    codeBackgroundGradientVia: "transparent",
+    codeBackgroundGradientTo: "rgb(255, 0, 204)",
   },
   theme: {
     selected: ETheme.default,

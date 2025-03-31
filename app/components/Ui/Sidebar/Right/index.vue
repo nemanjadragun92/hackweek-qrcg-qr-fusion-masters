@@ -102,32 +102,59 @@
             label="Enable Gradient Code Background Color"
           />
         </div>
-        <div>
-          <ElInput
-            v-model="config.colors.codeBackgroundGradientDegree"
-            name="codeBackgroundGradientDegree"
-            label="Gradient Code Background Color Degree"
-            type="number"
-            :min="0"
-            :max="360"
-          />
-        </div>
-        <div>
-          <ElInput
-            v-model="config.colors.codeBackgroundGradientStart"
-            name="codeBackgroundGradientStart"
-            label="QR Code Background Color From"
-            type="text"
-          />
-        </div>
-        <div>
-          <ElInput
-            v-model="config.colors.codeBackgroundGradientEnd"
-            name="codeBackgroundGradientEnd"
-            label="QR Code Background Color To"
-            type="text"
-          />
-        </div>
+        <template v-if="config.colors.codeBackgroundGradientEnabled">
+          <div>
+            <ElInputSwitch
+              v-model="config.colors.codeBackgroundGradientPredefined"
+              name="codeBackgroundGradientPredefined"
+              label="Enable Predefined Gradient Color"
+            />
+          </div>
+          <template v-if="!config.colors.codeBackgroundGradientPredefined">
+            <div>
+              <ElInputSwitch
+                v-model="config.colors.codeBackgroundGradientAnimate"
+                name="codeBackgroundGradientAnimate"
+                label="Enable Animations for Gradient Color"
+              />
+            </div>
+            <div>
+              <ElInput
+                v-model="config.colors.codeBackgroundGradientDegree"
+                name="codeBackgroundGradientDegree"
+                label="Gradient Code Background Color Degree"
+                type="number"
+                :min="0"
+                :max="360"
+              />
+            </div>
+            <div>
+              <ElInput
+                v-model="config.colors.codeBackgroundGradientFrom"
+                name="codeBackgroundGradientFrom"
+                label="QR Code Background Color From"
+                type="text"
+              />
+            </div>
+            <div>
+              <ElInput
+                v-model="config.colors.codeBackgroundGradientVia"
+                name="codeBackgroundGradientVia"
+                label="QR Code Background Color Via"
+                type="text"
+              />
+            </div>
+            <div>
+              <ElInput
+                v-model="config.colors.codeBackgroundGradientTo"
+                name="codeBackgroundGradientTo"
+                label="QR Code Background Color To"
+                type="text"
+              />
+            </div>
+          </template>
+        </template>
+
         <component :is="returnThemeComponent" v-if="returnThemeComponent" />
       </div>
     </div>

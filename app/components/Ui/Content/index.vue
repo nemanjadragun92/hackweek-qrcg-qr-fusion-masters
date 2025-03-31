@@ -42,9 +42,15 @@
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
         <div
-          class="box size-full absolute inset-0 z-10"
+          class="size-full absolute inset-0 z-10"
+          :class="{
+            predefinedGradient: config.colors.codeBackgroundGradientPredefined,
+            animateGradient: config.colors.codeBackgroundGradientAnimate,
+          }"
           :style="{
-            backgroundImage: `linear-gradient(${config.colors.codeBackgroundGradientDegree}deg, ${config.colors.codeBackgroundGradientStart}, ${config.colors.codeBackgroundGradientEnd})`,
+            backgroundImage: config.colors.codeBackgroundGradientPredefined
+              ? undefined
+              : `linear-gradient(${config.colors.codeBackgroundGradientDegree}deg, ${config.colors.codeBackgroundGradientFrom}, ${config.colors.codeBackgroundGradientVia}, ${config.colors.codeBackgroundGradientTo})`,
             mixBlendMode: 'screen',
           }"
         />
@@ -157,3 +163,81 @@ if (selectedTheme.value === ETheme.animations) {
   useAnimations(animatedText);
 }
 </script>
+
+<style>
+.animateGradient {
+  background-size: 360% 360%;
+  animation: gradient-animation 2s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.predefinedGradient {
+  background:
+    radial-gradient(
+      100% 100% at var(--4-x-position) var(--4-y-position),
+      #3cc2dd 0%,
+      transparent
+    ),
+    radial-gradient(
+      100% 100% at var(--5-x-position) var(--5-y-position),
+      #00faa7 0%,
+      transparent
+    ),
+    #1b253b;
+  animation-name: main;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  transition-timing-function: ease-in;
+}
+@property --4-x-position {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 20%;
+}
+@property --4-y-position {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 80%;
+}
+@property --5-x-position {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 80%;
+}
+@property --5-y-position {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 20%;
+}
+:root {
+  --4-x-position: 20%;
+  --4-y-position: 80%;
+  --5-x-position: 80%;
+  --5-y-position: 20%;
+}
+@keyframes main {
+  25% {
+    --4-x-position: 15%;
+    --4-y-position: 15%;
+    --5-x-position: 85%;
+    --5-y-position: 80%;
+  }
+  50% {
+    --4-x-position: 80%;
+    --4-y-position: 15%;
+    --5-x-position: 15%;
+    --5-y-position: 85%;
+  }
+}
+</style>
