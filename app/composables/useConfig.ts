@@ -36,12 +36,12 @@ export type Config = {
 };
 
 const defaultConfig: Config = {
-  darkMode: true,
+  darkMode: false,
   url: "https://bitly.com",
   image: "",
-  initialTransparentCode: true,
+  initialTransparentCode: false,
   animation: {
-    enabled: true,
+    enabled: false,
     mode: "instant",
     speed: 2,
   },
