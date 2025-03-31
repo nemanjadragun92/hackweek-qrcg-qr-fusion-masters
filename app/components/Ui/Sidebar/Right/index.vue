@@ -4,8 +4,8 @@
   >
     <h2 class="mt-8 px-6 font-bold text-4xl">Design</h2>
     <div class="space-y-4 overflow-auto py-6 h-full px-6">
-      <div class="space-y-1">
-        <div class="text-sm font-medium">Theme</div>
+      <div class="space-y-1 sticky -top-6 bg-neutral-100 z-10">
+        <div class="text-base font-bold uppercase">Theme:</div>
         <span class="flex flex-wrap gap-2">
           <ElButton
             class="capitalize"
