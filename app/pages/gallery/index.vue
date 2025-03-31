@@ -54,7 +54,13 @@ const items = [
   "http://localhost:3000/share?config=eyJkYXJrTW9kZSI6ZmFsc2UsInVybCI6Imh0dHBzOi8vYml0bHkuY29tIiwiaW1hZ2UiOiIiLCJpbml0aWFsVHJhbnNwYXJlbnRDb2RlIjp0cnVlLCJhbmltYXRpb24iOnsiZW5hYmxlZCI6dHJ1ZSwibW9kZSI6Imluc3RhbnQiLCJzcGVlZCI6Mn0sImNvbG9ycyI6eyJyYW5kb20iOmZhbHNlLCJzZWxlY3RlZCI6WyIjZmZmZmZmIl0sImNvZGVCYWNrZ3JvdW5kQ29sb3IiOiIjMDAwMDAwIiwiY29kZUJhY2tncm91bmRHcmFkaWVudEVuYWJsZWQiOnRydWUsImNvZGVCYWNrZ3JvdW5kR3JhZGllbnRQcmVkZWZpbmVkIjp0cnVlLCJjb2RlQmFja2dyb3VuZEdyYWRpZW50QW5pbWF0ZSI6dHJ1ZSwiY29kZUJhY2tncm91bmRHcmFkaWVudERlZ3JlZSI6NDUsImNvZGVCYWNrZ3JvdW5kR3JhZGllbnRGcm9tIjoicmVkIiwiY29kZUJhY2tncm91bmRHcmFkaWVudFZpYSI6ImdyZWVuIiwiY29kZUJhY2tncm91bmRHcmFkaWVudFRvIjoiYmx1ZSJ9LCJ0aGVtZSI6eyJzZWxlY3RlZCI6ImRlZmF1bHQiLCJjb25maWciOnsiZGVmYXVsdCI6e30sImJpdGx5Ijp7fSwic3RhcnMiOnsiZGVuc2l0eSI6NSwiYW1vdW50IjozMDAwfSwiZWFydGgiOnsiZGVuc2l0eSI6NSwiYW1vdW50IjozMDAwfSwiYmFja2dyb3VuZCI6eyJiYWNrZ3JvdW5kQ29sb3IiOiJ0cmFuc3BhcmVudCIsImJhY2tncm91bmRJbWFnZSI6IiIsImJhY2tncm91bmRGaXQiOiJjb3ZlciIsImJhY2tncm91bmRQb3NpdGlvblkiOjAsImJhY2tncm91bmRQb3NpdGlvblgiOjAsImJhY2tncm91bmRTaXplIjozNTAsImZha2VEb3RzQ29sb3IiOiJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkifSwiYW5pbWF0aW9ucyI6eyJ0ZXh0IjoiU0NBTiBNRSEiLCJ0ZXh0Q29sb3IiOiIjZmZmZmZmIiwiZm9udFNpemUiOjQ4LCJmb250V2VpZ2h0Ijo1MDAsInRvcE9mZnNldCI6LTc0LCJib3JkZXJXaWR0aCI6NSwiYm9yZGVyQ29sb3IiOiIjZmZmZmZmIn19fX0=",
 ];
 
-const showItem = ref(0);
+const route = useRoute();
+
+const initialItem = route.query.slide
+  ? parseInt(route.query.slide as string)
+  : 1;
+
+const showItem = ref(toRaw(initialItem) - 1);
 
 const onGetSize = (_item: string) => {
   const url = new URL(_item);
@@ -80,5 +86,15 @@ const returnItems = items.map((_item) => {
 
 const returnSelectedItem = computed(() => {
   return returnItems[showItem.value];
+});
+
+const router = useRouter();
+
+watch(showItem, async (_index) => {
+  await router.push({
+    query: {
+      slide: _index + 1,
+    },
+  });
 });
 </script>

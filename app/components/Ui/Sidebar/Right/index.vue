@@ -1,9 +1,9 @@
 <template>
   <aside
-    class="bg-(--ui-bg-color)/50 backdrop-blur-sm bottom-0 top-0 right-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-l border-(--text-color)/10"
+    class="bg-(--ui-bg-color)/50 backdrop-blur-sm flex flex-col bottom-0 top-0 right-0 fixed z-20 w-sm p-4 px-8 space-y-4 border-l border-(--text-color)/10"
   >
     <h2 class="font-semibold text-2xl">Themes</h2>
-    <div class="space-y-4">
+    <div class="space-y-4 overflow-auto flex-1">
       <div class="space-y-1">
         <div class="text-sm font-medium">Theme</div>
         <span
@@ -87,7 +87,7 @@
             type="text"
           />
         </div>
-        <div>
+        <div v-if="!config.colors.codeBackgroundGradientEnabled">
           <ElInput
             v-model="config.colors.codeBackgroundColor"
             name="codeBackgroundColor"

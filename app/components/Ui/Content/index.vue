@@ -34,7 +34,7 @@
         ref="containerEl"
         target="_blank"
         :href="returnValidUrl || ''"
-        class="wrapper size-[400px] block relative"
+        class="wrapper size-[400px] block relative rounded-2xl overflow-hidden"
         v-html="data"
       />
       <div
@@ -42,7 +42,7 @@
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
         <div
-          class="size-full absolute inset-0 z-10"
+          class="size-full absolute inset-0 z-10 rounded-2xl"
           :class="{
             predefinedGradient: config.colors.codeBackgroundGradientPredefined,
             animateGradient: config.colors.codeBackgroundGradientAnimate,
