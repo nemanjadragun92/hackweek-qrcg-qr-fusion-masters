@@ -1,23 +1,27 @@
 <template>
   <Teleport to="body">
     <div
-      class="fixed inset-0 z-50 bg-black/80 text-white flex items-center justify-center"
+      class="fixed inset-0 z-50 bg-neutral-100/50 backdrop-blur flex items-center justify-center"
     >
       <div class="w-xl space-y-8">
         <div>
           <button
             type="button"
-            class="border-2 bg-white/20 hover:bg-red-500 border-white rounded-full size-16 mx-auto flex items-center justify-center"
+            class="border-2 bg-neutral-100 hover:border-(--color-begonia-600) hover:text-(--color-begonia-600) border-(--color-standard) rounded-full size-16 mx-auto flex items-center justify-center"
             @click="emit('close')"
           >
             <Icon name="mdi:close" size="32" />
           </button>
         </div>
-        <div class="bg-white/25 border border-white/50 py-8 px-6 space-y-4">
+        <div
+          class="bg-neutral-100 rounded-lg shadow-lg border border-(--color-standard) py-8 px-6 space-y-2"
+        >
           <h3 class="text-lg font-semibold text-center">
             Share your amazing code with others!
           </h3>
-          <div class="bg-black/75 border border-black p-4">
+          <div
+            class="bg-(--color-lapis-100) border border-(--color-standard) p-4"
+          >
             <pre
               class="whitespace-break-spaces overflow-auto text-sm"
               v-text="embededLink"
@@ -31,26 +35,20 @@
           </div>
           <div>
             <div v-if="isClipboardSupported">
-              <button
-                class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
-                @click="copy(returnSharableLink)"
-              >
+              <ElButton class="uppercase" @click="copy(returnSharableLink)">
                 <!-- by default, `copied` will be reset in 1.5s -->
                 <span v-if="!copied">Click to copy link to clipboard</span>
                 <span v-else>Copied to clipboard!</span>
-              </button>
+              </ElButton>
             </div>
             <p v-else>Your browser does not support Clipboard API</p>
           </div>
           <div v-if="isClipboardSupported" class="text-center">or</div>
           <div>
             <div v-if="isShareSupported">
-              <button
-                class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
-                @click="onShare"
-              >
+              <ElButton class="uppercase" @click="onShare">
                 Click to share with others
-              </button>
+              </ElButton>
             </div>
             <p v-else>Your browser does not support Share API</p>
           </div>
