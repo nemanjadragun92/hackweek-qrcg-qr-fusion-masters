@@ -12,13 +12,7 @@
             class="h-10 border p-1 w-full bg-(--bg-color)/10"
           />
         </label>
-        <button
-          type="button"
-          class="inline-block w-full border border-orange-600 bg-orange-600 px-2 h-10 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
-          @click="onAddColor"
-        >
-          Add
-        </button>
+        <ElButton variant="secondary" @click="onAddColor"> Add </ElButton>
       </div>
     </div>
     <h3>Selected Colors</h3>
