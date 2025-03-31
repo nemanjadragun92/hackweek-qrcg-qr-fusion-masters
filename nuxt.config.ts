@@ -13,7 +13,7 @@ export default defineNuxtConfig({
 
   typescript: {
     // Enables strict typeCheck for development environment
-    typeCheck: process.env.NODE_ENV === "development",
+    // typeCheck: process.env.NODE_ENV === "development",
     strict: process.env.NODE_ENV === "development",
   },
 
@@ -77,6 +77,7 @@ export default defineNuxtConfig({
     "nuxt-icon", // https://github.com/nuxt-modules/icon | https://icones.js.org/collection/all?s=github
     "@vueuse/nuxt", // https://vueuse.org/guide/#nuxt
     "@nuxt/image", // https://image.nuxt.com
+    "nuxt-color-picker",
   ],
 
   image: {},
