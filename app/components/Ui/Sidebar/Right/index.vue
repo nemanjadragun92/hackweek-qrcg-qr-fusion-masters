@@ -120,28 +120,19 @@
               />
             </div>
             <div>
-              <ElInput
-                v-model="config.colors.codeBackgroundGradientFrom"
-                name="codeBackgroundGradientFrom"
-                label="QR Code Background Color From"
-                type="text"
-              />
+              <ElInputColor v-model="config.colors.codeBackgroundGradientFrom">
+                Color #1
+              </ElInputColor>
             </div>
             <div>
-              <ElInput
-                v-model="config.colors.codeBackgroundGradientVia"
-                name="codeBackgroundGradientVia"
-                label="QR Code Background Color Via"
-                type="text"
-              />
+              <ElInputColor v-model="config.colors.codeBackgroundGradientVia">
+                Color #2
+              </ElInputColor>
             </div>
             <div>
-              <ElInput
-                v-model="config.colors.codeBackgroundGradientTo"
-                name="codeBackgroundGradientTo"
-                label="QR Code Background Color To"
-                type="text"
-              />
+              <ElInputColor v-model="config.colors.codeBackgroundGradientTo">
+                Color #3
+              </ElInputColor>
             </div>
           </template>
         </template>

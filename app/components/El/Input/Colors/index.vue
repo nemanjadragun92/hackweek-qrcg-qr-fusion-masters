@@ -82,10 +82,3 @@ const onRemoveColor = (_color: string) => {
   );
 };
 </script>
-
-<style>
-.CP-absolute,
-.CP-absolute__component {
-  z-index: 60 !important;
-}
-</style>

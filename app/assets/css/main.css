@@ -31,4 +31,15 @@
     --color-begonia-700: #FA6E79;
     --color-dark-tertiary: rgba(253, 254, 255, 0.7);
     --color-navy-50: rgba(4,116,205,0.1);
+
+    /*Color Picker*/
+    --colorPickerBg: #000000 !important;
+    --colorPickerInputTitleBg: #353535 !important;
+    --colorPickerInputTextBg: #181919 !important;
+    --colorPickerDropperBg: #181919 !important;
+}
+
+.CP-absolute,
+.CP-absolute__component {
+    z-index: 60 !important;
 }

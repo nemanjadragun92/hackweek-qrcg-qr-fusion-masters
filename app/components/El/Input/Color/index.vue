@@ -37,10 +37,3 @@ type TModel = string;
 
 const model = defineModel<TModel>();
 </script>
-
-<style>
-.CP-absolute,
-.CP-absolute__component {
-  z-index: 60 !important;
-}
-</style>
