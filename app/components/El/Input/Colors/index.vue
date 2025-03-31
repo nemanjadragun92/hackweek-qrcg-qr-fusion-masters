@@ -54,7 +54,7 @@
           }"
         >
           <button
-            class="absolute shadow-md rounded-sm -top-3 -right-3 size-6 border border-(--color-neutral-100) bg-(--color-neutral-100) text-(--color-begonia-600) hover:border-(--color-begonia-600) flex items-center justify-center"
+            class="absolute shadow-md rounded-sm -top-3 -right-3 size-6 border border-(--color-neutral-100) bg-neutral-50 text-(--color-begonia-600) hover:border-(--color-begonia-600) flex items-center justify-center"
             type="button"
             @click="onRemoveColor(selectedColor)"
           >

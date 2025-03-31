@@ -89,7 +89,7 @@
         class="absolute pointer-events-none inset-0 items-center justify-center hidden group-hover:flex z-30"
       >
         <div
-          class="max-w-xs truncate p-1 text-md font-medium bg-black text-orange-500 border border-orange-500/50"
+          class="max-w-xs truncate px-2 py-1 text-md font-semibold bg-neutral-50 text-(--color-action-color) border-2 eounded-sm border-(--color-action-color)"
         >
           {{ returnValidUrl }}
         </div>
