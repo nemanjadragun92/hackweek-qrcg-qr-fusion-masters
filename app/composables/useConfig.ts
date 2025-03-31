@@ -20,6 +20,11 @@ export type Config = {
   colors: {
     random: boolean;
     selected: string[];
+    codeBackgroundColor: string;
+    codeBackgroundGradientEnabled: boolean;
+    codeBackgroundGradientDegree: number;
+    codeBackgroundGradientStart: string;
+    codeBackgroundGradientEnd: string;
   };
   theme: {
     selected: ETheme;
@@ -40,6 +45,11 @@ const defaultConfig: Config = {
   colors: {
     random: false,
     selected: ["#ffffff"],
+    codeBackgroundColor: "#000000",
+    codeBackgroundGradientEnabled: false,
+    codeBackgroundGradientDegree: 45,
+    codeBackgroundGradientStart: "rgb(51, 102, 153)",
+    codeBackgroundGradientEnd: "rgb(255, 0, 204)",
   },
   theme: {
     selected: ETheme.default,

@@ -38,15 +38,21 @@
         v-html="data"
       />
       <div
+        v-if="config.colors.codeBackgroundGradientEnabled"
+        class="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        <div
+          class="box size-full absolute inset-0 z-10"
+          :style="{
+            backgroundImage: `linear-gradient(${config.colors.codeBackgroundGradientDegree}deg, ${config.colors.codeBackgroundGradientStart}, ${config.colors.codeBackgroundGradientEnd})`,
+            mixBlendMode: 'screen',
+          }"
+        />
+      </div>
+      <div
         v-if="config.image"
         class="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
-        <!--        <div-->
-        <!--          class="box size-full mix-blend-screen absolute inset-0 z-10"-->
-        <!--          :style="{-->
-        <!--            background: 'linear-gradient(90deg, red, green)',-->
-        <!--          }"-->
-        <!--        />-->
         <img :src="config.image" alt="" class="size-16 z-20" />
       </div>
       <!--Theme Background START-->
@@ -151,18 +157,3 @@ if (selectedTheme.value === ETheme.animations) {
   useAnimations(animatedText);
 }
 </script>
-
-<style>
-.box {
-  background: linear-gradient(
-    45deg,
-    rgb(51, 102, 153),
-    rgb(255, 0, 204)
-  ) !important;
-  mask: radial-gradient(
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0) 16%,
-    rgb(0, 0, 0) 16%
-  ) !important;
-}
-</style>

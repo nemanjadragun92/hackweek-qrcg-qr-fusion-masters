@@ -87,6 +87,47 @@
             type="text"
           />
         </div>
+        <div>
+          <ElInput
+            v-model="config.colors.codeBackgroundColor"
+            name="codeBackgroundColor"
+            label="QR Code Background Color"
+            type="text"
+          />
+        </div>
+        <div>
+          <ElInputSwitch
+            v-model="config.colors.codeBackgroundGradientEnabled"
+            name="codeBackgroundGradientEnabled"
+            label="Enable Gradient Code Background Color"
+          />
+        </div>
+        <div>
+          <ElInput
+            v-model="config.colors.codeBackgroundGradientDegree"
+            name="codeBackgroundGradientDegree"
+            label="Gradient Code Background Color Degree"
+            type="number"
+            :min="0"
+            :max="360"
+          />
+        </div>
+        <div>
+          <ElInput
+            v-model="config.colors.codeBackgroundGradientStart"
+            name="codeBackgroundGradientStart"
+            label="QR Code Background Color From"
+            type="text"
+          />
+        </div>
+        <div>
+          <ElInput
+            v-model="config.colors.codeBackgroundGradientEnd"
+            name="codeBackgroundGradientEnd"
+            label="QR Code Background Color To"
+            type="text"
+          />
+        </div>
         <component :is="returnThemeComponent" v-if="returnThemeComponent" />
       </div>
     </div>

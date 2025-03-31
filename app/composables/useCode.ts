@@ -4,6 +4,7 @@ const containerEl = ref<HTMLElement | null>(null);
 
 export default function useCode() {
   const {
+    config,
     isDarkMode,
     isAnimationEnabled,
     animation,
@@ -30,7 +31,16 @@ export default function useCode() {
     if (selectedTheme.value === ETheme.background) {
       bg?.setAttribute("fill", "transparent");
     } else {
-      bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.75));
+      if (config.value.colors.codeBackgroundGradientEnabled) {
+        bg?.setAttribute(
+          "fill",
+          !isDarkMode.value ? hexToRgba("#ffffff", 1) : hexToRgba("#000000", 1),
+        );
+      } else if (config.value.colors.codeBackgroundColor) {
+        bg?.setAttribute("fill", config.value.colors.codeBackgroundColor);
+      } else {
+        bg?.setAttribute("fill", hexToRgba(backgroundColor, 0.75));
+      }
     }
     const childNodes = Array.from(
       svgElement?.firstChild?.nextSibling?.childNodes ?? [],
@@ -52,10 +62,19 @@ export default function useCode() {
         if (isRandomColorEnabled.value) {
           rect.setAttribute?.("fill", getRandomColor(backgroundColor));
         } else {
-          rect.setAttribute?.(
-            "fill",
-            getRandomColorFromArray(selectedColors.value),
-          );
+          if (config.value.colors.codeBackgroundGradientEnabled) {
+            rect.setAttribute(
+              "fill",
+              isDarkMode.value
+                ? hexToRgba("#ffffff", 1)
+                : hexToRgba("#000000", 1),
+            );
+          } else {
+            rect.setAttribute?.(
+              "fill",
+              getRandomColorFromArray(selectedColors.value),
+            );
+          }
         }
         if (selectedTheme.value === ETheme.background) {
           rect.classList?.add?.("size-12");
@@ -75,7 +94,14 @@ export default function useCode() {
       const paths: HTMLCollectionOf<SVGPathElement> =
         rect.getElementsByTagName("path");
       Array.from(paths).forEach((path) => {
-        if (isRandomColorEnabled.value) {
+        if (config.value.colors.codeBackgroundGradientEnabled) {
+          path.setAttribute(
+            "fill",
+            isDarkMode.value
+              ? hexToRgba("#ffffff", 1)
+              : hexToRgba("#000000", 1),
+          );
+        } else if (isRandomColorEnabled.value) {
           path.setAttribute("fill", getRandomColor(backgroundColor));
         } else {
           path.setAttribute(
@@ -87,7 +113,14 @@ export default function useCode() {
       const polygons: HTMLCollectionOf<SVGPolygonElement> =
         rect.getElementsByTagName("polygon");
       Array.from(polygons).forEach((polygon) => {
-        if (isRandomColorEnabled.value) {
+        if (config.value.colors.codeBackgroundGradientEnabled) {
+          polygon.setAttribute(
+            "fill",
+            isDarkMode.value
+              ? hexToRgba("#ffffff", 1)
+              : hexToRgba("#000000", 1),
+          );
+        } else if (isRandomColorEnabled.value) {
           polygon.setAttribute("fill", getRandomColor(backgroundColor));
         } else {
           polygon.setAttribute(
