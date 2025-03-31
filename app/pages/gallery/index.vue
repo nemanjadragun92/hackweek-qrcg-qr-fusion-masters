@@ -1,19 +1,43 @@
 <template>
-  <div>
-    <ul class="columns-2 md:columns-4 gap-4 space-y-4">
-      <li v-for="item in returnItems" :key="item.src">
-        <a :href="item.src">
-          <iframe
-            class="pointer-events-none"
-            :width="item.size || 550"
-            :height="item.size || 550"
-            :src="item.src"
-            title="Powered by QRFusionMasters"
-            frameborder="0"
-          />
-        </a>
-      </li>
-    </ul>
+  <iframe
+    v-if="returnSelectedItem"
+    class="w-screen h-svh"
+    width="100%"
+    height="100%"
+    :src="returnSelectedItem.src"
+    title="Powered by QRFusionMasters"
+    frameborder="0"
+  />
+  <div
+    class="fixed left-0 right-0 bg-black border-t border-white/15 px-8 bottom-0 justify-between flex items-center py-4"
+  >
+    <div>
+      <button
+        type="button"
+        class="text-white w-96 text-left hover:text-orange-500"
+        :class="{
+          'opacity-0 pointer-events-none': showItem < 1,
+        }"
+        @click="showItem--"
+      >
+        Previous
+      </button>
+    </div>
+    <div class="w-96 text-center text-orange-500 text-sm">
+      {{ showItem + 1 }} / {{ items.length }}
+    </div>
+    <div>
+      <button
+        type="button"
+        class="text-white w-96 text-right hover:text-orange-500"
+        :class="{
+          'opacity-0 pointer-events-none': showItem + 1 >= items.length,
+        }"
+        @click="showItem++"
+      >
+        Next
+      </button>
+    </div>
   </div>
 </template>
 
@@ -27,6 +51,8 @@ const items = [
   "http://localhost:3000/share?config=eyJkYXJrTW9kZSI6dHJ1ZSwidXJsIjoiaHR0cHM6Ly9iaXRseS5jb20iLCJpbWFnZSI6Imh0dHBzOi8vaS5naXBoeS5jb20vVmVxOEt1bUtwU0NjZlo3MVAxLndlYnAiLCJpbml0aWFsVHJhbnNwYXJlbnRDb2RlIjp0cnVlLCJhbmltYXRpb24iOnsiZW5hYmxlZCI6dHJ1ZSwibW9kZSI6Imluc3RhbnQiLCJzcGVlZCI6Mn0sImNvbG9ycyI6eyJyYW5kb20iOnRydWUsInNlbGVjdGVkIjpbIiNmMDg4NWMiLCIjZmZmZmZmIl19LCJ0aGVtZSI6eyJzZWxlY3RlZCI6InN0YXJzIiwiY29uZmlnIjp7ImRlZmF1bHQiOnt9LCJiaXRseSI6e30sInN0YXJzIjp7ImRlbnNpdHkiOjUsImFtb3VudCI6MzAwMH0sImVhcnRoIjp7ImRlbnNpdHkiOjUsImFtb3VudCI6MzAwMH0sImJhY2tncm91bmQiOnsiYmFja2dyb3VuZENvbG9yIjoidHJhbnNwYXJlbnQiLCJiYWNrZ3JvdW5kSW1hZ2UiOiJodHRwczovL2NkbjQuaWNvbmZpbmRlci5jb20vZGF0YS9pY29ucy9taXUtc3F1YXJlLWZsYXQtc29jaWFsLzYwL3doYXRzYXBwLXNxdWFyZS1zb2NpYWwtbWVkaWEtNTEyLnBuZyIsImJhY2tncm91bmRGaXQiOiJjb3ZlciIsImJhY2tncm91bmRQb3NpdGlvblkiOjAsImJhY2tncm91bmRQb3NpdGlvblgiOjAsImJhY2tncm91bmRTaXplIjozNTAsImZha2VEb3RzQ29sb3IiOiJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkifX19fQ==",
   "http://localhost:3000/share?config=eyJkYXJrTW9kZSI6dHJ1ZSwidXJsIjoiaHR0cHM6Ly9iaXRseS5jb20iLCJpbWFnZSI6Imh0dHBzOi8vdXBsb2FkLndpa2ltZWRpYS5vcmcvd2lraXBlZGlhL2NvbW1vbnMvNy83Zi9Sb3RhdGluZ19lYXJ0aF9hbmltYXRlZF90cmFuc3BhcmVudC5naWY/MjAyMDEwMjIxMjQ0NDgiLCJpbml0aWFsVHJhbnNwYXJlbnRDb2RlIjp0cnVlLCJhbmltYXRpb24iOnsiZW5hYmxlZCI6dHJ1ZSwibW9kZSI6Imluc3RhbnQiLCJzcGVlZCI6Mn0sImNvbG9ycyI6eyJyYW5kb20iOmZhbHNlLCJzZWxlY3RlZCI6WyIjNDI3OGY1IiwiIzFhZmY0MCJdfSwidGhlbWUiOnsic2VsZWN0ZWQiOiJlYXJ0aCIsImNvbmZpZyI6eyJkZWZhdWx0Ijp7fSwiYml0bHkiOnt9LCJzdGFycyI6eyJkZW5zaXR5Ijo1LCJhbW91bnQiOjMwMDB9LCJlYXJ0aCI6eyJkZW5zaXR5Ijo1LCJhbW91bnQiOjMwMDB9LCJiYWNrZ3JvdW5kIjp7ImJhY2tncm91bmRDb2xvciI6InRyYW5zcGFyZW50IiwiYmFja2dyb3VuZEltYWdlIjoiaHR0cHM6Ly9jZG40Lmljb25maW5kZXIuY29tL2RhdGEvaWNvbnMvbWl1LXNxdWFyZS1mbGF0LXNvY2lhbC82MC93aGF0c2FwcC1zcXVhcmUtc29jaWFsLW1lZGlhLTUxMi5wbmciLCJiYWNrZ3JvdW5kRml0IjoiY292ZXIiLCJiYWNrZ3JvdW5kUG9zaXRpb25ZIjowLCJiYWNrZ3JvdW5kUG9zaXRpb25YIjowLCJiYWNrZ3JvdW5kU2l6ZSI6MzUwLCJmYWtlRG90c0NvbG9yIjoicmdiYSgyNTUsMjU1LDI1NSwwLjUpIn19fX0=",
 ];
+
+const showItem = ref(0);
 
 const onGetSize = (_item: string) => {
   const url = new URL(_item);
@@ -48,5 +74,9 @@ const returnItems = items.map((_item) => {
     src: _item,
     size: onGetSize(_item),
   };
+});
+
+const returnSelectedItem = computed(() => {
+  return returnItems[showItem.value];
 });
 </script>
