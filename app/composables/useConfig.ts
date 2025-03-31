@@ -67,6 +67,7 @@ const defaultConfig: Config = {
         text: "SCAN ME!",
         textColor: "#ffffff",
         fontSize: 48,
+        fontWeight: 500,
         topOffset: -74,
         borderWidth: 5,
         borderColor: "#ffffff",

@@ -45,6 +45,24 @@
       />
     </div>
     <div>
+      <label for="objectFit">
+        <span class="text-sm font-medium">Font Weight</span>
+        <select
+          id="objectFit"
+          v-model="config.theme.config[ETheme.animations].fontWeight"
+          class="mt-0.5 w-full bg-(--bg-color)/10 border-(--text-color)/25 sm:text-sm"
+        >
+          <option
+            v-for="weight in [100, 200, 300, 400, 500, 600, 700, 800, 900]"
+            :key="weight"
+            :value="weight"
+          >
+            {{ weight }}
+          </option>
+        </select>
+      </label>
+    </div>
+    <div>
       <ElInput
         v-model.number="config.theme.config[ETheme.animations].borderWidth"
         name="themeAnimationsBorderWidth"
@@ -71,87 +89,8 @@
       </div>
     </div>
   </div>
-  <Teleport to="body">
-    <div
-      class="fixed inset-0 z-10 flex items-center justify-center pointer-events-none"
-    >
-      <div class="size-[400px] relative">
-        <div
-          class="absolute inset-0 flex items-center justify-center pointer-events-none border rounded-2xl"
-          :style="{
-            borderColor: selectedThemeConfig.borderColor,
-            borderWidth: `${selectedThemeConfig.borderWidth}px`,
-          }"
-        >
-          <div
-            :key="selectedThemeConfig.text"
-            class="absolute left-0 right-0 text-center"
-            :style="{
-              fontSize: `${selectedThemeConfig.fontSize}px`,
-              bottom: `${selectedThemeConfig.topOffset}px`,
-              color: selectedThemeConfig.textColor,
-            }"
-          >
-            <span ref="animatedText" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </Teleport>
 </template>
 
 <script lang="ts" setup>
-const { config, selectedThemeConfig, reloading } = useConfig();
-
-const animatedText = ref(null);
-const interval = ref<any>(null);
-
-const onInit = async () => {
-  await nextTick();
-  if (animatedText.value) {
-    animateText(
-      animatedText.value,
-      `${selectedThemeConfig.value.text}` || "",
-      150,
-    );
-  }
-};
-
-onMounted(() => {
-  onInit();
-});
-
-watch(reloading, async (_reloading) => {
-  if (_reloading) {
-    clearInterval(interval.value);
-    interval.value = null;
-    await onInit();
-  }
-});
-
-const animateText = (element: HTMLElement, text: string, speed = 150) => {
-  let index = 0;
-  let forward = true;
-  element.innerHTML = "";
-
-  const updateText = async () => {
-    if (forward) {
-      element.textContent = text.slice(0, index);
-      index++;
-      if (index > text.length) {
-        forward = false;
-        index = text.length - 1;
-      }
-    } else {
-      element.textContent = text.slice(0, index);
-      index--;
-      if (index < 0) {
-        forward = true;
-        index = 0;
-      }
-    }
-  };
-
-  interval.value = setInterval(updateText, speed);
-};
+const { config } = useConfig();
 </script>

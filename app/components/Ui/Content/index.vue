@@ -49,6 +49,29 @@
         <!--        />-->
         <img :src="config.image" alt="" class="size-16 z-20" />
       </div>
+      <!--Theme Background START-->
+      <div
+        v-if="selectedTheme === ETheme.animations"
+        class="absolute inset-0 flex items-center justify-center pointer-events-none border rounded-2xl"
+        :style="{
+          borderColor: selectedThemeConfig.borderColor,
+          borderWidth: `${selectedThemeConfig.borderWidth}px`,
+        }"
+      >
+        <div
+          :key="selectedThemeConfig.text"
+          class="absolute left-0 right-0 text-center"
+          :style="{
+            fontSize: `${selectedThemeConfig.fontSize}px`,
+            bottom: `${selectedThemeConfig.topOffset}px`,
+            color: selectedThemeConfig.textColor,
+            fontWeight: selectedThemeConfig.fontWeight,
+          }"
+        >
+          <span ref="animatedText" />
+        </div>
+      </div>
+      <!--Theme Background END-->
       <div
         v-if="returnValidUrl"
         class="absolute pointer-events-none inset-0 items-center justify-center hidden group-hover:flex z-30"
@@ -122,6 +145,11 @@ watch(isAnimationEnabled, (_animationEnabled) => {
     pause();
   }
 });
+
+const animatedText = ref(null);
+if (selectedTheme.value === ETheme.animations) {
+  useAnimations(animatedText);
+}
 </script>
 
 <style>
