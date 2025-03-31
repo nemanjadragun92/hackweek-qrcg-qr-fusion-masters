@@ -7,7 +7,7 @@
       <div class="space-y-1">
         <div class="text-sm font-medium">Theme</div>
         <span
-          class="inline-flex divide-x divide-(--text-color)/25 overflow-hidden border border-(--text-color)/25 bg-(--bg-color)/10"
+          class="grid grid-cols-3 overflow-hidden border border-(--text-color)/25 bg-(--bg-color)/10"
         >
           <button
             type="button"
@@ -18,6 +18,17 @@
             @click="config.theme.selected = ETheme.default"
           >
             {{ ETheme.default }}
+          </button>
+
+          <button
+            type="button"
+            class="px-3 py-1.5 text-sm font-medium transition-colors hover:bg-(--text-color)/30 focus:relative"
+            :class="{
+              'text-orange-500': config.theme.selected === ETheme.bitly,
+            }"
+            @click="config.theme.selected = ETheme.bitly"
+          >
+            {{ ETheme.bitly }}
           </button>
 
           <button

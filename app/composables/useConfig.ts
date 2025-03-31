@@ -1,5 +1,6 @@
 export enum ETheme {
   default = "default",
+  bitly = "bitly",
   stars = "stars",
   earth = "earth",
   background = "background",
@@ -43,6 +44,7 @@ const defaultConfig: Config = {
     selected: ETheme.default,
     config: {
       [ETheme.default]: {},
+      [ETheme.bitly]: {},
       [ETheme.stars]: {
         density: 5,
         amount: 3000,
@@ -64,10 +66,24 @@ const defaultConfig: Config = {
   },
 };
 
-const config = useLocalStorage<Config>(
-  "config",
-  JSON.parse(JSON.stringify(defaultConfig)),
-);
+const routeName = computed(() => window.location.pathname);
+const readSharableLinkConfig = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const configParam = urlParams.get("config");
+
+  if (configParam) {
+    const decoded = atob(configParam);
+    return JSON.parse(decoded);
+  }
+  return null;
+};
+
+const config = routeName.value.startsWith("/share")
+  ? shallowRef(readSharableLinkConfig())
+  : useLocalStorage<Config>(
+      "config",
+      JSON.parse(JSON.stringify(defaultConfig)),
+    );
 
 const returnUrl = computed(() => config.value.url);
 
@@ -109,6 +125,10 @@ export default function useConfig() {
       case ETheme.default:
         return defineAsyncComponent(
           () => import("../components/Theme/Default.vue"),
+        );
+      case ETheme.bitly:
+        return defineAsyncComponent(
+          () => import("../components/Theme/Bitly.vue"),
         );
       case ETheme.stars:
         return defineAsyncComponent(
