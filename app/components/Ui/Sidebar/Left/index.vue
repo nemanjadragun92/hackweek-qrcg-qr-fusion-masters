@@ -99,10 +99,10 @@
           class="fixed top-4 left-0 right-0 flex justify-center w-full z-50"
         >
           <div
-            class="text-white w-sm py-3 px-6 border text-center font-medium rounded"
+            class="text-(--color-lapis-950) w-sm text-lg py-3 px-6 border text-center font-semibold rounded-lg"
             :class="{
-              'bg-green-500/90 border-green-600': isScannable,
-              'bg-red-500/90 border-red-600': !isScannable,
+              'bg-green-100 border-green-500': isScannable,
+              'bg-red-100 border-red-500': !isScannable,
             }"
           >
             <template v-if="isScannable">QR Code is scannable!</template>
