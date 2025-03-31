@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-6">
     <div>
       <ElInput
         v-model="config.theme.config[ETheme.background].backgroundImage"
         name="themeBackgroundBackgroundImage"
-        label="Background Image"
+        label="Background image"
         type="text"
       />
     </div>
@@ -12,19 +12,22 @@
       <ElInput
         v-model.number="config.theme.config[ETheme.background].backgroundSize"
         name="themeBackgroundBackgroundSize"
-        label="Background Size"
+        label="Background size"
         type="number"
         :min="50"
         :max="2000"
       />
     </div>
     <div>
-      <label for="objectFit">
-        <span class="text-sm font-medium">Object Fit:</span>
+      <label class="relative block" for="objectFit">
+        <span
+          class="text-sm font-semibold block absolute -top-2.5 left-2.5 bg-neutral-100 text-(--color-lapis-800) pointer-events-none"
+          >Object fit</span
+        >
         <select
           id="objectFit"
           v-model="config.theme.config[ETheme.background].backgroundFit"
-          class="mt-0.5 w-full bg-(--bg-color)/10 border-(--text-color)/25 sm:text-sm"
+          class="mt-0.5 w-full bg-transparent text-(--color-dark-primary) border-neutral-500 rounded-sm"
         >
           <option value="fill">fill</option>
           <option value="contain">contain</option>
@@ -44,7 +47,7 @@
           config.theme.config[ETheme.background].backgroundPositionY
         "
         name="themeBackgroundBackgroundPositionY"
-        label="Background Position Y"
+        label="Background position Y"
         type="number"
       />
     </div>
@@ -54,34 +57,28 @@
           config.theme.config[ETheme.background].backgroundPositionX
         "
         name="themeBackgroundBackgroundPositionX"
-        label="Background Position X"
+        label="Background position X"
         type="number"
       />
     </div>
     <div>
-      <ElInput
+      <ElInputColor
         v-model="config.theme.config[ETheme.background].backgroundColor"
-        name="themeBackgroundBackgroundColor"
-        label="Background Color"
-        type="text"
-      />
-    </div>
-    <div>
-      <ElInput
-        v-model="config.theme.config[ETheme.background].fakeDotsColor"
-        name="themeBackgroundFakeDotsColor"
-        label="Fade Dots Color"
-        type="text"
-      />
-    </div>
-    <div>
-      <button
-        type="button"
-        class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
-        @click="onCheckIfCodeWithBackgroundScannable"
       >
+        Background color for "BG image"
+      </ElInputColor>
+    </div>
+    <div>
+      <ElInputColor
+        v-model="config.theme.config[ETheme.background].fakeDotsColor"
+      >
+        Fake Dots Color
+      </ElInputColor>
+    </div>
+    <div>
+      <ElButton class="uppercase" @click="onCheckIfCodeWithBackgroundScannable">
         Check if QR Code is Scanable
-      </button>
+      </ElButton>
     </div>
   </div>
   <Teleport to="body">

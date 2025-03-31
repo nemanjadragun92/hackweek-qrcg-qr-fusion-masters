@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-6">
     <div>
       <ElInput
         v-model.trim="config.theme.config[ETheme.animations].text"
@@ -9,20 +9,9 @@
       />
     </div>
     <div>
-      <span
-        aria-labelledby="themeAnimationsTextColor"
-        class="text-sm font-medium"
-        >Text Color</span
-      >
-      <div class="flex items-center gap-4">
-        <label class="w-96">
-          <input
-            v-model="config.theme.config[ETheme.animations].textColor"
-            type="color"
-            class="h-10 border p-1 w-full bg-(--bg-color)/10"
-          />
-        </label>
-      </div>
+      <ElInputColor v-model="config.theme.config[ETheme.animations].textColor">
+        Text color
+      </ElInputColor>
     </div>
     <div>
       <ElInput
@@ -45,12 +34,15 @@
       />
     </div>
     <div>
-      <label for="objectFit">
-        <span class="text-sm font-medium">Font Weight</span>
+      <label class="relative block" for="fontWeight">
+        <span
+          class="text-sm font-semibold block absolute -top-2.5 left-2.5 bg-neutral-100 text-(--color-lapis-800) pointer-events-none"
+          >Font weight</span
+        >
         <select
-          id="objectFit"
+          id="fontWeight"
           v-model="config.theme.config[ETheme.animations].fontWeight"
-          class="mt-0.5 w-full bg-(--bg-color)/10 border-(--text-color)/25 sm:text-sm"
+          class="mt-0.5 w-full bg-transparent text-(--color-dark-primary) border-neutral-500 rounded-sm"
         >
           <option
             v-for="weight in [100, 200, 300, 400, 500, 600, 700, 800, 900]"
@@ -73,20 +65,11 @@
       />
     </div>
     <div>
-      <span
-        aria-labelledby="themeAnimationsBorderColor"
-        class="text-sm font-medium"
-        >Border Color</span
+      <ElInputColor
+        v-model="config.theme.config[ETheme.animations].borderColor"
       >
-      <div class="flex items-center gap-4">
-        <label class="w-96">
-          <input
-            v-model="config.theme.config[ETheme.animations].borderColor"
-            type="color"
-            class="h-10 border p-1 w-full bg-(--bg-color)/10"
-          />
-        </label>
-      </div>
+        Border color
+      </ElInputColor>
     </div>
   </div>
 </template>
