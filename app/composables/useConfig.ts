@@ -6,7 +6,7 @@ export enum ETheme {
   background = "background",
 }
 
-type Config = {
+export type Config = {
   darkMode: boolean;
   url: string;
   image: string;
@@ -70,10 +70,18 @@ const routeName = computed(() => window.location.pathname);
 const readSharableLinkConfig = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const configParam = urlParams.get("config");
+  const sizeParam = urlParams.get("size");
 
   if (configParam) {
     const decoded = atob(configParam);
-    return JSON.parse(decoded);
+    const data = JSON.parse(decoded);
+    if (sizeParam) {
+      if (data.theme.config[ETheme.background]?.backgroundSize) {
+        data.theme.config[ETheme.background].backgroundSize =
+          parseInt(sizeParam);
+      }
+    }
+    return data;
   }
   return null;
 };
