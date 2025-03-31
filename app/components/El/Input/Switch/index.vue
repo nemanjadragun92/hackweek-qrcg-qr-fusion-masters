@@ -1,10 +1,7 @@
 <template>
-  <div class="flex flex-col gap-2">
-    <span :aria-labelledby="props.name" class="text-sm font-medium">{{
-      props.label
-    }}</span>
+  <div class="flex items-center gap-3 min-w-0">
     <label
-      class="group relative block h-6 w-12 rounded-full bg-gray-300 transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-orange-500"
+      class="group min-w-0 relative block h-6 w-12 rounded-full bg-(--color-lapis-200) transition-colors [-webkit-tap-highlight-color:_transparent] has-checked:bg-(--color-action-color)"
     >
       <input
         :id="props.name"
@@ -14,7 +11,7 @@
       />
 
       <span
-        class="absolute inset-y-0 start-0 m-1 grid size-4 place-content-center rounded-full bg-white text-gray-700 transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block"
+        class="absolute inset-y-0 start-0 m-1 grid size-4 place-content-center rounded-full bg-white shadow text-(--color-dark-primary) transition-[inset-inline-start] peer-checked:start-6 peer-checked:*:first:hidden *:last:hidden peer-checked:*:last:block"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +43,11 @@
         </svg>
       </span>
     </label>
+    <span
+      :aria-labelledby="props.name"
+      class="flex-1 text-(--color-dark-primary)"
+      >{{ props.label }}</span
+    >
   </div>
 </template>
 

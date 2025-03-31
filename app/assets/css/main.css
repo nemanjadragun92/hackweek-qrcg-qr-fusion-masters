@@ -1,2 +1,16 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
+
+:root {
+    --color-standard: #D3DCE0;
+    --color-lapis-100: #F2F4F7;
+    --color-lapis-200: #E9ECF2;
+    --color-lapis-800: #53678C;
+    --color-neutral-100: #FDFEFF;
+    --color-neutral-500: #C0CED5;
+    --color-dark-primary: #1B294B;
+    --color-action-color: #0474CD;
+    --color-begonia-700: #BB0312;
+    --color-dark-tertiary: #53678C;
+    --color-navy-50: #ECF6FE;
+}

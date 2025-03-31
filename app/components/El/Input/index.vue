@@ -1,6 +1,9 @@
 <template>
-  <label :for="props.name">
-    <span class="text-sm font-medium">{{ props.label }}</span>
+  <label class="relative block" :for="props.name">
+    <span
+      class="text-sm font-semibold block absolute -top-2.5 left-2.5 bg-neutral-100 text-(--color-lapis-800) pointer-events-none"
+      >{{ props.label }}</span
+    >
 
     <input
       :id="props.name"
@@ -8,7 +11,7 @@
       :type="props.type"
       :min="props.min"
       :max="props.max"
-      class="mt-0.5 w-full bg-(--bg-color)/10 border-(--text-color)/25 sm:text-sm"
+      class="h-10 w-full border border-neutral-500 rounded-sm bg-transparent text-(--color-dark-primary)"
     />
   </label>
 </template>

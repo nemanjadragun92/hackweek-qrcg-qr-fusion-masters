@@ -1,22 +1,15 @@
 <template>
   <aside
-    class="bg-(--ui-bg-color)/50 backdrop-blur-sm bottom-0 top-0 left-0 fixed z-20 w-sm p-4 px-8 flex flex-col gap-4 border-r border-(--text-color)/10"
+    class="bg-neutral-100 text-black border rounded-tr-lg rounded-br-lg border-(--color-standard) shadow-lg bottom-0 top-0 left-0 fixed z-20 w-sm flex flex-col gap-4"
   >
-    <h1 class="font-semibold text-2xl">Fusion Masters</h1>
-    <div class="space-y-4 overflow-auto h-full">
+    <h1 class="mt-8 px-6 font-bold text-4xl text-black">Fusion Masters</h1>
+    <div class="space-y-4 overflow-auto py-6 h-full px-6">
       <div>
         <ElInput
           v-model="config.url"
           name="url"
           label="Text / URL"
           type="text"
-        />
-      </div>
-      <div>
-        <ElInputSwitch
-          v-model="config.darkMode"
-          name="darkMode"
-          label="Dark Mode"
         />
       </div>
       <template v-if="!config.colors.codeBackgroundGradientEnabled">
@@ -27,6 +20,7 @@
             label="Make QR code on initial load transparent"
           />
         </div>
+        <hr class="border-(--color-standard)" />
         <div>
           <ElInputSwitch
             v-model="config.colors.random"
@@ -119,24 +113,31 @@
         </div>
       </Teleport>
     </div>
-    <div class="py-2 space-y-2">
-      <button
-        type="button"
-        class="inline-block w-full border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-orange-500 focus:ring-3 focus:outline-hidden"
-        @click="showShareModal = true"
-      >
+    <div
+      class="p-4 space-y-2 border-t border-(--color-standard) bg-(--color-lapis-100)"
+    >
+      <ElButton class="uppercase" @click="showShareModal = true">
         Generate Embedded Code
-      </button>
-      <button
-        type="button"
-        class="inline-block w-full border border-red-600 bg-red-600 px-12 py-3 text-sm font-medium text-white hover:bg-red-500 focus:ring-3 focus:outline-hidden"
-        @click="onResetConfig"
-      >
+      </ElButton>
+      <ElButton variant="error" class="uppercase" @click="onResetConfig">
         Reset All Settings
-      </button>
+      </ElButton>
     </div>
   </aside>
   <ModalShare v-if="showShareModal" @close="showShareModal = false" />
+  <Teleport to="body">
+    <div class="fixed bottom-0 left-0 right-0 z-10 flex justify-center">
+      <div
+        class="shadow-lg bg-neutral-100 border border-(--color-standard) rounded-full mb-4 h-12 px-4 flex items-center"
+      >
+        <ElInputSwitch
+          v-model="config.darkMode"
+          name="darkMode"
+          label="Dark Mode"
+        />
+      </div>
+    </div>
+  </Teleport>
 </template>
 
 <script lang="ts" setup>
