@@ -1,42 +1,42 @@
 <template>
-  <iframe
-    v-if="returnSelectedItem"
-    class="w-screen h-svh"
-    width="100%"
-    height="100%"
-    :src="returnSelectedItem.src"
-    title="Powered by QRFusionMasters"
-    frameborder="0"
-  />
-  <div
-    class="fixed left-0 right-0 bg-black border-t border-white/15 px-8 bottom-0 justify-between flex items-center py-4"
-  >
-    <div>
-      <button
-        type="button"
-        class="text-white w-96 text-left hover:text-orange-500"
-        :class="{
-          'opacity-0 pointer-events-none': showItem < 1,
-        }"
-        @click="showItem--"
-      >
-        Previous
-      </button>
-    </div>
-    <div class="w-96 text-center text-orange-500 text-sm">
-      {{ showItem + 1 }} / {{ items.length }}
-    </div>
-    <div>
-      <button
-        type="button"
-        class="text-white w-96 text-right hover:text-orange-500"
-        :class="{
-          'opacity-0 pointer-events-none': showItem + 1 >= items.length,
-        }"
-        @click="showItem++"
-      >
-        Next
-      </button>
+  <div class="flex flex-col h-svh">
+    <iframe
+      v-if="returnSelectedItem"
+      class="w-screen h-full flex-1 min-h-0"
+      width="100%"
+      height="100%"
+      :src="returnSelectedItem.src"
+      title="Powered by QRFusionMasters"
+      frameborder="0"
+    />
+    <div
+      class="left-0 right-0 shadow-lg bg-neutral-100 border-t border-(--color-standard) px-8 bottom-0 justify-between flex items-center h-16"
+    >
+      <div>
+        <ElButton
+          class="px-8"
+          :class="{
+            'opacity-0 pointer-events-none': showItem < 1,
+          }"
+          @click="showItem--"
+        >
+          Previous
+        </ElButton>
+      </div>
+      <div class="w-96 text-center text-(--color-lapis-800) text-sm">
+        {{ showItem + 1 }} / {{ items.length }}
+      </div>
+      <div>
+        <ElButton
+          class="px-8"
+          :class="{
+            'opacity-0 pointer-events-none': showItem + 1 >= items.length,
+          }"
+          @click="showItem++"
+        >
+          Next
+        </ElButton>
+      </div>
     </div>
   </div>
 </template>
