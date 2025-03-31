@@ -51,7 +51,7 @@
       </div>
       <div
         v-if="returnValidUrl"
-        class="absolute -top-3 left-0 right-0 justify-center hidden group-hover:flex z-30"
+        class="absolute pointer-events-none inset-0 items-center justify-center hidden group-hover:flex z-30"
       >
         <div
           class="max-w-xs truncate p-1 text-md font-medium bg-black text-orange-500 border border-orange-500/50"

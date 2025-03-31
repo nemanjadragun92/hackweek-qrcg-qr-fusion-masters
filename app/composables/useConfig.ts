@@ -4,6 +4,7 @@ export enum ETheme {
   stars = "stars",
   earth = "earth",
   background = "background",
+  animations = "animations",
 }
 
 export type Config = {
@@ -61,6 +62,14 @@ const defaultConfig: Config = {
         backgroundPositionX: 0,
         backgroundSize: 350,
         fakeDotsColor: "rgba(255,255,255,0.5)",
+      },
+      [ETheme.animations]: {
+        text: "SCAN ME!",
+        textColor: "#ffffff",
+        fontSize: 48,
+        topOffset: -74,
+        borderWidth: 5,
+        borderColor: "#ffffff",
       },
     },
   },
@@ -150,6 +159,10 @@ export default function useConfig() {
         return defineAsyncComponent(
           () => import("../components/Theme/Background.vue"),
         );
+      case ETheme.animations:
+        return defineAsyncComponent(
+          () => import("../components/Theme/Animations.vue"),
+        );
       default:
         return null;
     }
@@ -186,8 +199,12 @@ export default function useConfig() {
 
   watchDebounced(
     selectedTheme,
-    async () => {
-      await onReload();
+    async (_selectedTheme: ETheme) => {
+      if (_selectedTheme === ETheme.animations) {
+        await onReload(true);
+      } else {
+        await onReload();
+      }
     },
     {
       debounce: 500,
@@ -217,11 +234,14 @@ export default function useConfig() {
     },
   );
 
-  const onReload = async () => {
-    // location.reload();
-    reloading.value = true;
-    await promiseTimeout(50);
-    reloading.value = false;
+  const onReload = async (full = false) => {
+    if (full) {
+      location.reload();
+    } else {
+      reloading.value = true;
+      await promiseTimeout(50);
+      reloading.value = false;
+    }
   };
 
   return {
