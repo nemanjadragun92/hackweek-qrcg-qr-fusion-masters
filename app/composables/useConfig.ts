@@ -47,8 +47,8 @@ const defaultConfig: Config = {
   },
   colors: {
     random: false,
-    selected: ["#ffffff"],
-    codeBackgroundColor: "#000000",
+    selected: ["#000000"],
+    codeBackgroundColor: "#ffffff",
     codeBackgroundGradientEnabled: false,
     codeBackgroundGradientPredefined: false,
     codeBackgroundGradientAnimate: false,
