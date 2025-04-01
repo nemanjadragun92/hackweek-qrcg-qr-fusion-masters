@@ -71,11 +71,19 @@ const { data: items, refresh } = await useFetch<string[]>("/api/codes", {
 
 const addedNew = ref(false);
 
+const onPlayNotification = () => {
+  const audio = new Audio("/audio/notification.mp3");
+  audio.play().catch((error) => {
+    console.error("Error playing audio:", error);
+  });
+};
+
 useIntervalFn(
   async () => {
     const itemsBefore = toRaw(items.value);
     await refresh();
     if (itemsBefore.length < items.value.length) {
+      onPlayNotification();
       addedNew.value = true;
       await promiseTimeout(3000);
       addedNew.value = false;
