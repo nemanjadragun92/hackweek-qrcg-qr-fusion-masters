@@ -21,7 +21,7 @@
 const { config } = useConfig();
 
 const returnSharableLink = computed(() => {
-  return `${window.location.origin}/share?config=${btoa(JSON.stringify(config.value))}`;
+  return `/share?config=${btoa(JSON.stringify(config.value))}`;
 });
 
 const submitted = ref(false);

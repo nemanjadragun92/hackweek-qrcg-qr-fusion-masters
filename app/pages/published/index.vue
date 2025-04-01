@@ -96,7 +96,7 @@ const initialItem = route.query.slide
 const showItem = ref(toRaw(initialItem) - 1);
 
 const onGetSize = (_item: string) => {
-  const url = new URL(_item);
+  const url = new URL(`${window.location.origin}${_item}`);
   const urlParams = new URLSearchParams(url.search);
   const config = urlParams.get("config");
   const decodedConfig = atob(config || "");
