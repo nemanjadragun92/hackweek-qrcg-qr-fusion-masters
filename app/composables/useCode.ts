@@ -29,8 +29,7 @@ export default function useCode() {
     const svgElement = containerEl.value?.firstChild as SVGSVGElement;
     const bg = svgElement?.querySelector('rect[width="2000"]');
     if (selectedTheme.value === ETheme.background) {
-      // bg?.setAttribute("fill", "transparent");
-      bg?.setAttribute("fill", config.value.colors.codeBackgroundColor);
+      bg?.setAttribute("fill", "transparent");
     } else {
       if (config.value.colors.codeBackgroundGradientEnabled) {
         bg?.setAttribute(

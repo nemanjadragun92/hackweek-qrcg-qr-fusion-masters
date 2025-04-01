@@ -116,7 +116,7 @@
             label="Enable Random Colors"
           />
         </div>
-        <div>
+        <div v-if="selectedTheme !== ETheme.background">
           <ElInputColor v-model="config.colors.codeBackgroundColor"
             >Background color</ElInputColor
           >
