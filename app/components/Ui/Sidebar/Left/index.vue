@@ -95,7 +95,7 @@
           class="fixed top-4 left-0 right-0 flex justify-center w-full z-50"
         >
           <div
-            class="text-(--color-lapis-950) w-sm text-lg py-3 px-6 border text-center font-semibold rounded-lg"
+            class="text-(--color-lapis-950) w-sm text-lg py-3 px-6 border text-center font-semibold rounded-lg shadow-lg"
             :class="{
               'bg-green-100 border-green-500': isScannable,
               'bg-red-100 border-red-500': !isScannable,
