@@ -1,5 +1,7 @@
 <template>
-  <ElButton class="uppercase" @click="onSubmit">Submit your code</ElButton>
+  <ElButton variant="outline" class="uppercase" @click="onSubmit"
+    >Submit your code</ElButton
+  >
   <Teleport to="body">
     <div
       v-if="submitted"

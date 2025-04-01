@@ -112,13 +112,7 @@
     <div
       class="p-4 space-y-2 border-t border-(--color-standard) bg-(--color-lapis-100)"
     >
-      <ElPublish />
-      <ElButton class="uppercase" @click="showShareModal = true">
-        Generate Embedded Code
-      </ElButton>
-      <ElButton variant="error" class="uppercase" @click="onResetConfig">
-        Reset All Settings
-      </ElButton>
+      Footer
     </div>
   </aside>
   <ModalShare v-if="showShareModal" @close="showShareModal = false" />
@@ -142,11 +136,8 @@ import { ETheme } from "~/composables/useConfig";
 
 const { onInit } = useCode();
 
-const { config, isAnimationEnabled, onResetConfig, selectedTheme } =
-  useConfig();
+const { config, isAnimationEnabled, selectedTheme } = useConfig();
 const isScannable = ref<boolean | null>(null);
-
-const showShareModal = ref(false);
 
 useIntervalFn(async () => {
   if (selectedTheme.value === ETheme.background) {

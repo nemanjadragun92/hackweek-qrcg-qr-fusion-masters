@@ -140,11 +140,24 @@
         <component :is="returnThemeComponent" v-if="returnThemeComponent" />
       </div>
     </div>
+    <div
+      class="p-4 space-y-2 border-t border-(--color-standard) bg-(--color-lapis-100)"
+    >
+      <ElButton class="uppercase" @click="showShareModal = true">
+        Generate Embedded Code
+      </ElButton>
+      <ElPublish />
+      <ElButton variant="error" class="uppercase" @click="onResetConfig">
+        Reset All Changes
+      </ElButton>
+    </div>
   </aside>
 </template>
 
 <script setup lang="ts">
 import { ETheme } from "~/composables/useConfig";
 
-const { config, returnThemeComponent } = useConfig();
+const { config, returnThemeComponent, onResetConfig } = useConfig();
+
+const showShareModal = ref(false);
 </script>

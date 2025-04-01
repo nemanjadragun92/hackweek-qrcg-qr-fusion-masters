@@ -7,6 +7,8 @@
       'w-auto inline': props.inline,
       'rounded-3xl bg-(--color-action-color) border-(--color-action-color) hover:bg-white hover:text-(--color-action-color) text-white':
         props.variant === 'primary',
+      'rounded-3xl border-(--color-action-color) text-(--color-action-color) hover:bg-(--color-action-color) hover:text-white':
+        props.variant === 'outline',
       'rounded-3xl bg-transparent border-(--color-begonia-700) hover:bg-(--color-begonia-700) hover:text-white text-(--color-begonia-700)':
         props.variant === 'error',
       'bg-transparent border-transparent rounded-sm hover:border-(--color-action-color)':
@@ -26,7 +28,7 @@
 type Props = {
   active?: boolean;
   inline?: boolean;
-  variant?: "primary" | "error" | "text" | "secondary";
+  variant?: "primary" | "outline" | "error" | "text" | "secondary";
 };
 
 const props = withDefaults(defineProps<Props>(), {
