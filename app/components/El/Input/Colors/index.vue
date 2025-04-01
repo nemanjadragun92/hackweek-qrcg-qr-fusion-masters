@@ -5,7 +5,9 @@
     </h3>
     <div v-if="!config.colors.selected?.length" class="flex items-center gap-2">
       <ElInputColor v-model="color" label="addColor" class="w-full flex-1" />
-      <ElButton inline variant="secondary" @click="onAddColor"> Add </ElButton>
+      <ElButton inline variant="secondary" @click="onAddColor(color)">
+        Add
+      </ElButton>
     </div>
     <ul v-else class="flex flex-wrap gap-2">
       <li
@@ -45,7 +47,7 @@
         <ElButton
           variant="secondary"
           class="uppercase !flex items-center justify-center !size-10"
-          @click="onAddColor"
+          @click="onAddColor('#000000')"
         >
           <Icon name="mdi:add" size="22" />
         </ElButton>
@@ -59,8 +61,8 @@ const color = ref("#000000");
 
 const { config } = useConfig();
 
-const onAddColor = () => {
-  config.value.colors.selected.push(color.value);
+const onAddColor = (_color = "#000000") => {
+  config.value.colors.selected.push(_color);
 };
 
 const onRemoveColor = (_color: string) => {
