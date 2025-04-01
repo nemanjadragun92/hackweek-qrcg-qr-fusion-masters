@@ -50,7 +50,7 @@
           :style="{
             backgroundImage: config.colors.codeBackgroundGradientPredefined
               ? undefined
-              : `linear-gradient(${config.colors.codeBackgroundGradientDegree}deg, ${config.colors.codeBackgroundGradientPalette.join(', ')})`,
+              : `linear-gradient(${config.colors.codeBackgroundGradientDegree}deg, ${config.colors.codeBackgroundGradientPalette?.join(', ')})`,
             mixBlendMode: 'screen',
           }"
         />

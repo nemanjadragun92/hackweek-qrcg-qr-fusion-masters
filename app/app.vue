@@ -10,13 +10,22 @@
       }"
     >
       <Head>
-        <Title>Template</Title>
+        <Title>QR Fusion Masters</Title>
         <Meta name="language" content="en" />
-        <Meta property="og:title" content="Template" />
-        <Meta name="twitter:title" content="Template" />
-        <Meta name="description" content="Template" />
-        <Meta property="og:description" content="Template" />
-        <Meta name="twitter:description" content="Template" />
+        <Meta property="og:title" content="QR Fusion Masters" />
+        <Meta name="twitter:title" content="QR Fusion Masters" />
+        <Meta
+          name="description"
+          content="Create stunning and scannable QR codes with our customizable QR code generator. Enjoy features like gradient backgrounds, animation options, and dark mode support. Perfect for personal and professional use."
+        />
+        <Meta
+          property="og:description"
+          content="Create stunning and scannable QR codes with our customizable QR code generator. Enjoy features like gradient backgrounds, animation options, and dark mode support. Perfect for personal and professional use."
+        />
+        <Meta
+          name="twitter:description"
+          content="Create stunning and scannable QR codes with our customizable QR code generator. Enjoy features like gradient backgrounds, animation options, and dark mode support. Perfect for personal and professional use."
+        />
         <Meta property="og:image" content="/favicon.png" />
         <Meta name="twitter:image" content="/favicon.png" />
         <Meta name="url" :content="`${nuxtApp?.$app_origin}${$route?.path}`" />
