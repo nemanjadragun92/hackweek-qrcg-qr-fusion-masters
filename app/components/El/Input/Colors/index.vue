@@ -3,50 +3,10 @@
     <h3 class="text-base text-(--color-dark-primary) font-bold uppercase">
       Qr code color
     </h3>
-    <div class="flex flex-col gap-2">
-      <span
-        aria-labelledby="selectedColors"
-        class="text-base text-(--color-lapis-800) font-normal"
-        >Add color</span
-      >
-      <div class="flex items-center gap-4">
-        <ColorPicker
-          v-slot="{ color: _color, show }"
-          v-model="color"
-          class="w-full"
-          with-alpha
-          with-initial-color
-          with-eye-dropper
-          with-hex-input
-          with-rgb-input
-          with-colors-history
-        >
-          <button
-            :style="{
-              backgroundColor: color,
-            }"
-            class="border border-neutral-500 m-0.5 h-10 w-full rounded-sm"
-            @click="show"
-          >
-            <span class="bg-black text-white text-xs px-1 py-1 rounded">{{
-              _color
-            }}</span>
-          </button>
-        </ColorPicker>
-        <ElButton inline variant="secondary" @click="onAddColor">
-          Add
-        </ElButton>
-      </div>
+    <div v-if="!config.colors.selected?.length" class="flex items-center gap-2">
+      <ElInputColor v-model="color" label="addColor" class="w-full flex-1" />
+      <ElButton inline variant="secondary" @click="onAddColor"> Add </ElButton>
     </div>
-    <h4 class="text-base text-(--color-lapis-800) font-normal">
-      Selected color
-    </h4>
-    <p
-      v-if="!config.colors.selected?.length"
-      class="text-sm text-(--color-action-color)"
-    >
-      You do not have any selected colors yet. Default color is black
-    </p>
     <ul v-else class="flex flex-wrap gap-2">
       <li
         v-for="(selectedColor, selectedColorIndex) in config.colors.selected"
@@ -81,6 +41,15 @@
           </div>
         </ColorPicker>
       </li>
+      <li class="flex items-center justify-center">
+        <ElButton
+          variant="secondary"
+          class="uppercase !flex items-center justify-center !size-10"
+          @click="onAddColor"
+        >
+          <Icon name="mdi:add" size="22" />
+        </ElButton>
+      </li>
     </ul>
   </div>
 </template>
@@ -91,7 +60,6 @@ const color = ref("#000000");
 const { config } = useConfig();
 
 const onAddColor = () => {
-  if (config.value.colors.selected.includes(color.value)) return;
   config.value.colors.selected.push(color.value);
 };
 
