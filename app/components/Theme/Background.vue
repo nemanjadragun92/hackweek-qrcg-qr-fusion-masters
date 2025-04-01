@@ -19,27 +19,48 @@
       />
     </div>
     <div>
-      <label class="relative block" for="objectFit">
-        <span
-          class="text-sm font-semibold block absolute -top-2.5 left-2.5 bg-neutral-100 text-(--color-lapis-800) pointer-events-none"
-          >Object fit</span
-        >
-        <select
-          id="objectFit"
-          v-model="config.theme.config[ETheme.background].backgroundFit"
-          class="mt-0.5 w-full bg-transparent text-(--color-dark-primary) border-neutral-500 rounded-sm"
-        >
-          <option value="fill">fill</option>
-          <option value="contain">contain</option>
-          <option value="cover">cover</option>
-          <option value="none">none</option>
-          <option value="scale-down">scale-down</option>
-          <option value="inherit">inherit</option>
-          <option value="initial">initial</option>
-          <option value="revert">revert</option>
-          <option value="unset">unset</option>
-        </select>
-      </label>
+      <ElInputSelect
+        v-model="config.theme.config[ETheme.background].backgroundFit"
+        label="Object fit"
+        :items="[
+          {
+            label: 'Fill',
+            value: 'fill',
+          },
+          {
+            label: 'Contain',
+            value: 'contain',
+          },
+          {
+            label: 'Cover',
+            value: 'cover',
+          },
+          {
+            label: 'None',
+            value: 'none',
+          },
+          {
+            label: 'Scale down',
+            value: 'scale-down',
+          },
+          {
+            label: 'Inherit',
+            value: 'inherit',
+          },
+          {
+            label: 'Initial',
+            value: 'initial',
+          },
+          {
+            label: 'Revert',
+            value: 'revert',
+          },
+          {
+            label: 'Unset',
+            value: 'unset',
+          },
+        ]"
+      />
     </div>
     <div>
       <ElInput

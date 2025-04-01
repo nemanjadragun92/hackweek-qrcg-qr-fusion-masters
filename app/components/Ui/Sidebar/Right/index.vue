@@ -152,6 +152,7 @@
       </ElButton>
     </div>
   </aside>
+  <ModalShare v-if="showShareModal" @close="showShareModal = false" />
 </template>
 
 <script setup lang="ts">

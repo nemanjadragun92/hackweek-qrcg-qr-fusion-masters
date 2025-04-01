@@ -34,25 +34,21 @@
       />
     </div>
     <div>
-      <label class="relative block" for="fontWeight">
-        <span
-          class="text-sm font-semibold block absolute -top-2.5 left-2.5 bg-neutral-100 text-(--color-lapis-800) pointer-events-none"
-          >Font weight</span
-        >
-        <select
-          id="fontWeight"
-          v-model="config.theme.config[ETheme.animations].fontWeight"
-          class="mt-0.5 w-full bg-transparent text-(--color-dark-primary) border-neutral-500 rounded-sm"
-        >
-          <option
-            v-for="weight in [100, 200, 300, 400, 500, 600, 700, 800, 900]"
-            :key="weight"
-            :value="weight"
-          >
-            {{ weight }}
-          </option>
-        </select>
-      </label>
+      <ElInputSelect
+        v-model="config.theme.config[ETheme.animations].fontWeight"
+        label="Font weight"
+        :items="[
+          { label: 'Thin', value: 100 },
+          { label: 'Extra Light', value: 200 },
+          { label: 'Light', value: 300 },
+          { label: 'Regular', value: 400 },
+          { label: 'Medium', value: 500 },
+          { label: 'Semi Bold', value: 600 },
+          { label: 'Bold', value: 700 },
+          { label: 'Extra Bold', value: 800 },
+          { label: 'Black', value: 900 },
+        ]"
+      />
     </div>
     <div>
       <ElInput

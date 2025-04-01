@@ -13,14 +13,14 @@
         />
       </div>
       <template v-if="!config.colors.codeBackgroundGradientEnabled">
-        <div>
+        <div class="border border-(--color-standard) p-4 rounded-lg">
           <ElInputSwitch
             v-model="config.initialTransparentCode"
             name="initialTransparentCode"
             label="Make QR code on initial load transparent"
           />
         </div>
-        <hr class="border-(--color-standard)" />
+        <div class="text-base font-bold uppercase">Color Configuration</div>
         <div>
           <ElInputSwitch
             v-model="config.colors.random"
@@ -31,6 +31,29 @@
         <div v-if="!config.colors.random">
           <ElInputColors />
         </div>
+      </template>
+      <Teleport to="body">
+        <div
+          v-if="isScannable !== null"
+          class="fixed top-4 left-0 right-0 flex justify-center w-full z-50"
+        >
+          <div
+            class="text-(--color-lapis-950) w-sm text-lg py-3 px-6 border text-center font-semibold rounded-lg shadow-lg"
+            :class="{
+              'bg-green-100 border-green-500': isScannable,
+              'bg-red-100 border-red-500': !isScannable,
+            }"
+          >
+            <template v-if="isScannable">QR Code is scannable!</template>
+            <template v-else
+              >QR Code is <strong>not</strong> scannable</template
+            >
+          </div>
+        </div>
+      </Teleport>
+    </div>
+    <div class="p-4 space-y-2">
+      <template v-if="!config.colors.codeBackgroundGradientEnabled">
         <div class="border border-(--color-standard) p-4 rounded-lg">
           <div class="space-y-4">
             <ElInputSwitch
@@ -77,45 +100,16 @@
                 />
               </div>
             </template>
-            <div v-else>
-              <ElButton
-                v-if="config.colors.selected?.length > 1"
-                variant="secondary"
-                @click="onInit"
-              >
+            <div v-else-if="config.colors.selected?.length > 1">
+              <ElButton variant="secondary" @click="onInit">
                 Generate new version
               </ElButton>
             </div>
           </div>
         </div>
       </template>
-      <Teleport to="body">
-        <div
-          v-if="isScannable !== null"
-          class="fixed top-4 left-0 right-0 flex justify-center w-full z-50"
-        >
-          <div
-            class="text-(--color-lapis-950) w-sm text-lg py-3 px-6 border text-center font-semibold rounded-lg shadow-lg"
-            :class="{
-              'bg-green-100 border-green-500': isScannable,
-              'bg-red-100 border-red-500': !isScannable,
-            }"
-          >
-            <template v-if="isScannable">QR Code is scannable!</template>
-            <template v-else
-              >QR Code is <strong>not</strong> scannable</template
-            >
-          </div>
-        </div>
-      </Teleport>
-    </div>
-    <div
-      class="p-4 space-y-2 border-t border-(--color-standard) bg-(--color-lapis-100)"
-    >
-      Footer
     </div>
   </aside>
-  <ModalShare v-if="showShareModal" @close="showShareModal = false" />
   <Teleport to="body">
     <div class="fixed bottom-0 left-0 right-0 z-10 flex justify-center">
       <div
