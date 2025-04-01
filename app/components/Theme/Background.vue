@@ -101,7 +101,7 @@
   <Teleport to="body">
     <div
       v-if="loading"
-      class="fixed z-50 bg-black inset-0 flex items-center justify-center gap-4"
+      class="fixed z-50 bg-(--color-lapis-100) inset-0 flex items-center justify-center gap-4"
     >
       <Icon name="svg-spinners:blocks-shuffle-3" size="32" />
       Please wait... We are doing scan-ability check for this QR Code...

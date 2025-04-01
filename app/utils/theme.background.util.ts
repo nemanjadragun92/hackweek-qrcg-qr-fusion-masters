@@ -6,7 +6,7 @@ export const appendMissingDots = (
   fakeDotColor = "rgba(255,255,255,1)",
 ) => {
   if (!container) return;
-  const missingDots = 2500;
+  const missingDots = 2000;
 
   let x = startPoint;
   let y = startPoint;

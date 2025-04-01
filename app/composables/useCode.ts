@@ -140,12 +140,14 @@ export default function useCode() {
     const startPoint = parseInt(
       svgSquaresElement?.[0]?.getAttribute("x") || "200",
     );
-    const endPoint = parseInt(
-      svgContainer?.children?.[svgContainer.children.length - 7]?.getAttribute(
-        "x",
-      ) || "1736",
-    );
+    // const endPoint = parseInt(
+    //   svgContainer?.children?.[svgContainer.children.length - 7]?.getAttribute(
+    //     "x",
+    //   ) || "1736",
+    // );
 
+    // const startPoint = 200;
+    const endPoint = 1799;
     if (selectedTheme.value === ETheme.background) {
       appendMissingDots(
         svgContainer,
