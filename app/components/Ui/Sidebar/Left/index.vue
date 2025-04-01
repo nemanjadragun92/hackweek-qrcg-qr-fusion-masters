@@ -3,7 +3,7 @@
     class="bg-neutral-100 overflow-hidden border border-l-0 my-1 rounded-tr-lg rounded-br-lg border-(--color-standard) shadow-lg bottom-0 top-0 left-0 fixed z-20 w-sm flex flex-col gap-4"
   >
     <h1 class="mt-8 px-6 font-bold text-4xl">Fusion Masters</h1>
-    <div class="space-y-4 overflow-auto py-6 h-full px-6">
+    <div class="space-y-6 overflow-auto py-6 h-full px-6">
       <div>
         <ElInput
           v-model="config.url"
@@ -12,30 +12,76 @@
           type="text"
         />
       </div>
-      <template v-if="!config.colors.codeBackgroundGradientEnabled">
-        <div class="border border-(--color-standard) p-4 rounded-lg">
-          <ElInputSwitch
-            v-model="config.initialTransparentCode"
-            name="initialTransparentCode"
-            label="Make QR code on initial load transparent"
-          />
-        </div>
-        <div class="text-base font-bold uppercase">Color Configuration</div>
+      <div
+        v-if="!config.colors.codeBackgroundGradientEnabled"
+        class="border border-(--color-standard) p-4 rounded-lg"
+      >
+        <ElInputSwitch
+          v-model="config.initialTransparentCode"
+          name="initialTransparentCode"
+          label="Make QR code on initial load transparent"
+        />
+      </div>
+      <div class="text-base font-bold uppercase">Color Configuration</div>
+      <div>
+        <ElInputSelect
+          v-model="selectedColorMode"
+          :items="[
+            {
+              label: 'Solid',
+              value: 'solid',
+            },
+            {
+              label: 'Gradient',
+              value: 'gradient',
+            },
+          ]"
+        />
+      </div>
+      <template v-if="config.colors.codeBackgroundGradientEnabled">
         <div>
-          <ElInputSelect
-            v-model="selectedColorMode"
-            :items="[
-              {
-                label: 'Solid',
-                value: 'solid',
-              },
-              {
-                label: 'Gradient',
-                value: 'gradient',
-              },
-            ]"
+          <ElInputSwitch
+            v-model="config.colors.codeBackgroundGradientPredefined"
+            name="codeBackgroundGradientPredefined"
+            label="Enable Predefined Gradient Color"
           />
         </div>
+        <template v-if="!config.colors.codeBackgroundGradientPredefined">
+          <div>
+            <ElInputSwitch
+              v-model="config.colors.codeBackgroundGradientAnimate"
+              name="codeBackgroundGradientAnimate"
+              label="Enable Animations for Gradient Color"
+            />
+          </div>
+          <div>
+            <ElInput
+              v-model="config.colors.codeBackgroundGradientDegree"
+              name="codeBackgroundGradientDegree"
+              label="Gradient Code Degree"
+              type="number"
+              :min="0"
+              :max="360"
+            />
+          </div>
+          <div>
+            <ElInputColor v-model="config.colors.codeBackgroundGradientFrom">
+              Color #1
+            </ElInputColor>
+          </div>
+          <div>
+            <ElInputColor v-model="config.colors.codeBackgroundGradientVia">
+              Color #2
+            </ElInputColor>
+          </div>
+          <div>
+            <ElInputColor v-model="config.colors.codeBackgroundGradientTo">
+              Color #3
+            </ElInputColor>
+          </div>
+        </template>
+      </template>
+      <template v-if="!config.colors.codeBackgroundGradientEnabled">
         <div>
           <ElInputSwitch
             v-model="config.colors.random"
@@ -148,7 +194,14 @@ const { onInit } = useCode();
 const { config, isAnimationEnabled, selectedTheme } = useConfig();
 const isScannable = ref<boolean | null>(null);
 
-const selectedColorMode = ref("solid");
+const selectedColorMode = ref(
+  config.value.colors.codeBackgroundGradientEnabled ? "gradient" : "solid",
+);
+
+watch(selectedColorMode, (_selectedColorMode) => {
+  config.value.colors.codeBackgroundGradientEnabled =
+    _selectedColorMode === "gradient";
+});
 
 useIntervalFn(async () => {
   if (selectedTheme.value === ETheme.background) {

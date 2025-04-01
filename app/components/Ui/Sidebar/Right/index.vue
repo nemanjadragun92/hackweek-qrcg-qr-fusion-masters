@@ -70,7 +70,7 @@
       </div>
       <hr class="border-(--color-standard)" />
       <div class="space-y-6">
-        <h2 class="text-2xl font-bold text-(--color-dark-primary)">
+        <h2 class="text-base uppercase font-bold text-(--color-dark-primary)">
           Configuration
         </h2>
         <div>
@@ -81,62 +81,6 @@
             type="text"
           />
         </div>
-        <div v-if="!config.colors.codeBackgroundGradientEnabled">
-          <ElInputColor v-model="config.colors.codeBackgroundColor">
-            Background color
-          </ElInputColor>
-        </div>
-        <div>
-          <ElInputSwitch
-            v-model="config.colors.codeBackgroundGradientEnabled"
-            name="codeBackgroundGradientEnabled"
-            label="Enable Gradient Code Background Color"
-          />
-        </div>
-        <template v-if="config.colors.codeBackgroundGradientEnabled">
-          <div>
-            <ElInputSwitch
-              v-model="config.colors.codeBackgroundGradientPredefined"
-              name="codeBackgroundGradientPredefined"
-              label="Enable Predefined Gradient Color"
-            />
-          </div>
-          <template v-if="!config.colors.codeBackgroundGradientPredefined">
-            <div>
-              <ElInputSwitch
-                v-model="config.colors.codeBackgroundGradientAnimate"
-                name="codeBackgroundGradientAnimate"
-                label="Enable Animations for Gradient Color"
-              />
-            </div>
-            <div>
-              <ElInput
-                v-model="config.colors.codeBackgroundGradientDegree"
-                name="codeBackgroundGradientDegree"
-                label="Gradient Code Background Color Degree"
-                type="number"
-                :min="0"
-                :max="360"
-              />
-            </div>
-            <div>
-              <ElInputColor v-model="config.colors.codeBackgroundGradientFrom">
-                Color #1
-              </ElInputColor>
-            </div>
-            <div>
-              <ElInputColor v-model="config.colors.codeBackgroundGradientVia">
-                Color #2
-              </ElInputColor>
-            </div>
-            <div>
-              <ElInputColor v-model="config.colors.codeBackgroundGradientTo">
-                Color #3
-              </ElInputColor>
-            </div>
-          </template>
-        </template>
-
         <component :is="returnThemeComponent" v-if="returnThemeComponent" />
       </div>
     </div>
