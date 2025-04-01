@@ -28,6 +28,7 @@ const { config } = useConfig();
 onMounted(async () => {
   await nextTick();
   config.value.image = "https://i.giphy.com/Veq8KumKpSCcfZ71P1.webp";
+  config.value.colors.codeBackgroundColor = "#ffffff";
   config.value.colors.random = true;
 });
 </script>

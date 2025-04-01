@@ -30,6 +30,7 @@ onMounted(async () => {
   config.value.image =
     "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif?20201022124448";
   config.value.colors.random = false;
+  config.value.colors.codeBackgroundColor = "#000000";
   config.value.colors.selected = ["#4278f5", "#1aff40"];
 });
 </script>
