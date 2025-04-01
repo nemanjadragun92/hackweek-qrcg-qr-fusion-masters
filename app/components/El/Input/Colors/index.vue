@@ -1,10 +1,13 @@
 <template>
   <div class="space-y-2">
+    <h3 class="text-base text-(--color-dark-primary) font-bold uppercase">
+      Qr code color
+    </h3>
     <div class="flex flex-col gap-2">
       <span
         aria-labelledby="selectedColors"
-        class="text-base text-(--color-dark-primary) font-bold uppercase"
-        >Add Color</span
+        class="text-base text-(--color-dark-secondary) font-normal"
+        >Add color</span
       >
       <div class="flex items-center gap-4">
         <ColorPicker
@@ -22,7 +25,7 @@
             :style="{
               backgroundColor: color,
             }"
-            class="border border-neutral-500 m-0.5 h-10 w-full"
+            class="border border-neutral-500 m-0.5 h-10 w-full rounded-sm"
             @click="show"
           >
             <span class="bg-black text-white text-xs px-1 py-1 rounded">{{
@@ -35,10 +38,13 @@
         </ElButton>
       </div>
     </div>
-    <h3 class="text-base text-(--color-dark-primary) font-bold uppercase">
-      Selected Colors
-    </h3>
-    <p v-if="!config.colors.selected?.length" class="text-sm text-blue-500">
+    <h4 class="text-base text-(--color-dark-secondary) font-normal">
+      Selected color
+    </h4>
+    <p
+      v-if="!config.colors.selected?.length"
+      class="text-sm text-(--color-action-color)"
+    >
       You do not have any selected colors yet. Default color is black
     </p>
     <ul v-else class="flex flex-wrap gap-2">
@@ -48,7 +54,7 @@
         class="p-0.5 border border-neutral-500 rounded-sm"
       >
         <div
-          class="size-10 relative"
+          class="size-10 relative rounded-sm"
           :style="{
             backgroundColor: selectedColor,
           }"

@@ -22,6 +22,21 @@
         </div>
         <div class="text-base font-bold uppercase">Color Configuration</div>
         <div>
+          <ElInputSelect
+            v-model="selectedColorMode"
+            :items="[
+              {
+                label: 'Solid',
+                value: 'solid',
+              },
+              {
+                label: 'Gradient',
+                value: 'gradient',
+              },
+            ]"
+          />
+        </div>
+        <div>
           <ElInputSwitch
             v-model="config.colors.random"
             name="colorsRandom"
@@ -132,6 +147,8 @@ const { onInit } = useCode();
 
 const { config, isAnimationEnabled, selectedTheme } = useConfig();
 const isScannable = ref<boolean | null>(null);
+
+const selectedColorMode = ref("solid");
 
 useIntervalFn(async () => {
   if (selectedTheme.value === ETheme.background) {

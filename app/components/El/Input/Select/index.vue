@@ -9,7 +9,14 @@
       <span
         class="h-10 flex items-center w-full px-3 border border-neutral-500 rounded-sm bg-transparent text-(--color-dark-primary)"
       >
-        <span class="truncate">{{ model || "Select one of the options" }}</span>
+        <span class="truncate flex-1">{{
+          model || "Select one of the options"
+        }}</span>
+        <Icon
+          :name="showDropdown ? 'mdi:chevron-up' : 'mdi:chevron-down'"
+          class="text-(--color-lapis-700)"
+          size="32"
+        />
       </span>
     </label>
     <ul
