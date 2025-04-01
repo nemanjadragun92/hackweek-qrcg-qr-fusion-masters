@@ -64,20 +64,47 @@
               :max="360"
             />
           </div>
-          <div>
-            <ElInputColor v-model="config.colors.codeBackgroundGradientFrom">
-              Color #1
+          <div
+            v-for="(palette, paletteIndex) in config.colors
+              .codeBackgroundGradientPalette"
+            :key="paletteIndex"
+            class="flex items-center gap-2"
+          >
+            <ElInputColor
+              v-model="
+                config.colors.codeBackgroundGradientPalette[paletteIndex]
+              "
+              class="flex-1"
+              :data-palette="palette"
+            >
+              Color #{{ paletteIndex + 1 }}
             </ElInputColor>
-          </div>
-          <div>
-            <ElInputColor v-model="config.colors.codeBackgroundGradientVia">
-              Color #2
-            </ElInputColor>
-          </div>
-          <div>
-            <ElInputColor v-model="config.colors.codeBackgroundGradientTo">
-              Color #3
-            </ElInputColor>
+            <ElButton
+              v-if="
+                paletteIndex ===
+                config.colors.codeBackgroundGradientPalette.length - 1
+              "
+              variant="secondary"
+              class="uppercase !flex items-center justify-center !size-10"
+              @click="
+                config.colors.codeBackgroundGradientPalette.push('rgb(0, 0, 0)')
+              "
+            >
+              <Icon name="mdi:add" size="22" />
+            </ElButton>
+            <ElButton
+              v-if="config.colors.codeBackgroundGradientPalette.length > 1"
+              variant="error"
+              class="uppercase !flex items-center justify-center !size-10"
+              @click="
+                config.colors.codeBackgroundGradientPalette.splice(
+                  paletteIndex,
+                  1,
+                )
+              "
+            >
+              <Icon name="mdi:trash" size="22" />
+            </ElButton>
           </div>
         </template>
       </template>

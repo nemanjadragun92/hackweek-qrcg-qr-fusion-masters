@@ -50,7 +50,7 @@
           :style="{
             backgroundImage: config.colors.codeBackgroundGradientPredefined
               ? undefined
-              : `linear-gradient(${config.colors.codeBackgroundGradientDegree}deg, ${config.colors.codeBackgroundGradientFrom}, ${config.colors.codeBackgroundGradientVia}, ${config.colors.codeBackgroundGradientTo})`,
+              : `linear-gradient(${config.colors.codeBackgroundGradientDegree}deg, ${config.colors.codeBackgroundGradientPalette.join(', ')})`,
             mixBlendMode: 'screen',
           }"
         />
@@ -100,8 +100,6 @@
 
 <script lang="ts" setup>
 const { containerEl, returnValidUrl, urlDebounced, onInit } = useCode();
-// https://media.tenor.com/UxQ_m5eDewkAAAAj/discokugel-mirrorball.gif
-// const image = "https://i.giphy.com/3gRWfmZMI0Cb2Hoaye.webp";
 
 const {
   config,

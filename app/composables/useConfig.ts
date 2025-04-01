@@ -25,9 +25,7 @@ export type Config = {
     codeBackgroundGradientPredefined: boolean;
     codeBackgroundGradientAnimate: boolean;
     codeBackgroundGradientDegree: number;
-    codeBackgroundGradientFrom: string;
-    codeBackgroundGradientVia: string;
-    codeBackgroundGradientTo: string;
+    codeBackgroundGradientPalette: string[];
   };
   theme: {
     selected: ETheme;
@@ -53,10 +51,11 @@ const defaultConfig: Config = {
     codeBackgroundGradientPredefined: false,
     codeBackgroundGradientAnimate: false,
     codeBackgroundGradientDegree: 45,
-    codeBackgroundGradientFrom: "rgb(51, 102, 153)",
-    codeBackgroundGradientVia: "transparent",
-    codeBackgroundGradientTo: "rgb(255, 0, 204)",
-    // TODO: Move from, via, to (to array of colors instead)
+    codeBackgroundGradientPalette: [
+      "rgb(51, 102, 153)",
+      "rgba(0, 0, 0, 0)",
+      "rgb(255, 0, 204)",
+    ],
   },
   theme: {
     selected: ETheme.default,
