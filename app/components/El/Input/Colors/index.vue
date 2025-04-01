@@ -49,24 +49,37 @@
     </p>
     <ul v-else class="flex flex-wrap gap-2">
       <li
-        v-for="selectedColor in config.colors.selected"
-        :key="selectedColor"
+        v-for="(selectedColor, selectedColorIndex) in config.colors.selected"
+        :key="selectedColorIndex"
         class="p-0.5 border border-neutral-500 rounded-sm"
       >
-        <div
-          class="size-10 relative rounded-sm"
-          :style="{
-            backgroundColor: selectedColor,
-          }"
+        <ColorPicker
+          v-slot="{ show: show }"
+          v-model="config.colors.selected[selectedColorIndex]"
+          class="w-full"
+          with-alpha
+          with-initial-color
+          with-eye-dropper
+          with-hex-input
+          with-rgb-input
+          with-colors-history
         >
-          <button
-            class="absolute shadow-md rounded-sm -top-3 -right-3 size-6 border border-(--color-neutral-100) bg-neutral-50 text-(--color-begonia-600) hover:border-(--color-begonia-600) flex items-center justify-center"
-            type="button"
-            @click="onRemoveColor(selectedColor)"
+          <div
+            class="size-10 relative rounded-sm"
+            :style="{
+              backgroundColor: selectedColor,
+            }"
+            @click="show"
           >
-            <Icon name="mdi:trash-outline" size="16" />
-          </button>
-        </div>
+            <button
+              class="absolute shadow-md rounded-sm -top-3 -right-3 size-6 border border-(--color-neutral-100) bg-neutral-50 text-(--color-begonia-600) hover:border-(--color-begonia-600) flex items-center justify-center"
+              type="button"
+              @click.stop.prevent="onRemoveColor(selectedColor)"
+            >
+              <Icon name="mdi:trash-outline" size="16" />
+            </button>
+          </div>
+        </ColorPicker>
       </li>
     </ul>
   </div>
