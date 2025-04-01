@@ -112,6 +112,7 @@
     <div
       class="p-4 space-y-2 border-t border-(--color-standard) bg-(--color-lapis-100)"
     >
+      <ElPublish />
       <ElButton class="uppercase" @click="showShareModal = true">
         Generate Embedded Code
       </ElButton>

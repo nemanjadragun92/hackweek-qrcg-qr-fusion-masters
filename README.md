@@ -11,3 +11,5 @@
 
 ### Expose localhost (https://localhost.run/)
 ssh -R 80:localhost:3000 nokey@localhost.run
+
+ssh -p 443 -R0:localhost:3000 a.pinggy.io
