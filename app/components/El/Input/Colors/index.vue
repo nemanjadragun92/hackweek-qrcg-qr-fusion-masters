@@ -6,7 +6,7 @@
     <div class="flex flex-col gap-2">
       <span
         aria-labelledby="selectedColors"
-        class="text-base text-(--color-dark-secondary) font-normal"
+        class="text-base text-(--color-lapis-800) font-normal"
         >Add color</span
       >
       <div class="flex items-center gap-4">
@@ -38,7 +38,7 @@
         </ElButton>
       </div>
     </div>
-    <h4 class="text-base text-(--color-dark-secondary) font-normal">
+    <h4 class="text-base text-(--color-lapis-800) font-normal">
       Selected color
     </h4>
     <p

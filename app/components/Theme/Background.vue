@@ -8,87 +8,89 @@
         type="text"
       />
     </div>
-    <div>
-      <ElInput
-        v-model.number="config.theme.config[ETheme.background].backgroundSize"
-        name="themeBackgroundBackgroundSize"
-        label="Background size"
-        type="number"
-        :min="50"
-        :max="2000"
-      />
-    </div>
-    <div>
-      <ElInputSelect
-        v-model="config.theme.config[ETheme.background].backgroundFit"
-        label="Object fit"
-        :items="[
-          {
-            label: 'Fill',
-            value: 'fill',
-          },
-          {
-            label: 'Contain',
-            value: 'contain',
-          },
-          {
-            label: 'Cover',
-            value: 'cover',
-          },
-          {
-            label: 'None',
-            value: 'none',
-          },
-          {
-            label: 'Scale down',
-            value: 'scale-down',
-          },
-          {
-            label: 'Inherit',
-            value: 'inherit',
-          },
-          {
-            label: 'Initial',
-            value: 'initial',
-          },
-          {
-            label: 'Revert',
-            value: 'revert',
-          },
-          {
-            label: 'Unset',
-            value: 'unset',
-          },
-        ]"
-      />
-    </div>
-    <div>
-      <ElInput
-        v-model.number="
-          config.theme.config[ETheme.background].backgroundPositionY
-        "
-        name="themeBackgroundBackgroundPositionY"
-        label="Background position Y"
-        type="number"
-      />
-    </div>
-    <div>
-      <ElInput
-        v-model.number="
-          config.theme.config[ETheme.background].backgroundPositionX
-        "
-        name="themeBackgroundBackgroundPositionX"
-        label="Background position X"
-        type="number"
-      />
-    </div>
-    <div>
-      <ElInputColor
-        v-model="config.theme.config[ETheme.background].backgroundColor"
-      >
-        Background color for "BG image"
-      </ElInputColor>
-    </div>
+    <template v-if="config.theme.config[ETheme.background].backgroundImage">
+      <div>
+        <ElInputColor
+          v-model="config.theme.config[ETheme.background].backgroundColor"
+        >
+          Image background color
+        </ElInputColor>
+      </div>
+      <div>
+        <ElInput
+          v-model.number="config.theme.config[ETheme.background].backgroundSize"
+          name="themeBackgroundBackgroundSize"
+          label="Background size"
+          type="number"
+          :min="50"
+          :max="2000"
+        />
+      </div>
+      <div>
+        <ElInputSelect
+          v-model="config.theme.config[ETheme.background].backgroundFit"
+          label="Object fit"
+          :items="[
+            {
+              label: 'Fill',
+              value: 'fill',
+            },
+            {
+              label: 'Contain',
+              value: 'contain',
+            },
+            {
+              label: 'Cover',
+              value: 'cover',
+            },
+            {
+              label: 'None',
+              value: 'none',
+            },
+            {
+              label: 'Scale down',
+              value: 'scale-down',
+            },
+            {
+              label: 'Inherit',
+              value: 'inherit',
+            },
+            {
+              label: 'Initial',
+              value: 'initial',
+            },
+            {
+              label: 'Revert',
+              value: 'revert',
+            },
+            {
+              label: 'Unset',
+              value: 'unset',
+            },
+          ]"
+        />
+      </div>
+      <div>
+        <ElInput
+          v-model.number="
+            config.theme.config[ETheme.background].backgroundPositionY
+          "
+          name="themeBackgroundBackgroundPositionY"
+          label="Background position Y"
+          type="number"
+        />
+      </div>
+      <div>
+        <ElInput
+          v-model.number="
+            config.theme.config[ETheme.background].backgroundPositionX
+          "
+          name="themeBackgroundBackgroundPositionX"
+          label="Background position X"
+          type="number"
+        />
+      </div>
+    </template>
     <div>
       <ElInputColor
         v-model="config.theme.config[ETheme.background].fakeDotsColor"

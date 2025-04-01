@@ -116,29 +116,15 @@
             label="Enable Random Colors"
           />
         </div>
+        <div>
+          <ElInputColor v-model="config.colors.codeBackgroundColor"
+            >Background color</ElInputColor
+          >
+        </div>
         <div v-if="!config.colors.random">
           <ElInputColors />
         </div>
       </template>
-      <Teleport to="body">
-        <div
-          v-if="isScannable !== null"
-          class="fixed top-4 left-0 right-0 flex justify-center w-full z-50"
-        >
-          <div
-            class="text-(--color-lapis-950) w-sm text-lg py-3 px-6 border text-center font-semibold rounded-lg shadow-lg"
-            :class="{
-              'bg-green-100 border-green-500': isScannable,
-              'bg-red-100 border-red-500': !isScannable,
-            }"
-          >
-            <template v-if="isScannable">QR Code is scannable!</template>
-            <template v-else
-              >QR Code is <strong>not</strong> scannable</template
-            >
-          </div>
-        </div>
-      </Teleport>
     </div>
     <div class="p-4 space-y-2">
       <template v-if="!config.colors.codeBackgroundGradientEnabled">
@@ -198,6 +184,23 @@
       </template>
     </div>
   </aside>
+  <Teleport to="body">
+    <div
+      v-if="isScannable !== null"
+      class="fixed top-4 left-0 right-0 flex justify-center w-full z-50"
+    >
+      <div
+        class="text-(--color-lapis-950) w-sm text-lg py-3 px-6 border text-center font-semibold rounded-lg shadow-lg"
+        :class="{
+          'bg-green-100 border-green-500': isScannable,
+          'bg-red-100 border-red-500': !isScannable,
+        }"
+      >
+        <template v-if="isScannable">QR Code is scannable!</template>
+        <template v-else>QR Code is <strong>not</strong> scannable</template>
+      </div>
+    </div>
+  </Teleport>
   <Teleport to="body">
     <div class="fixed bottom-0 left-0 right-0 z-10 flex justify-center">
       <div
