@@ -129,6 +129,9 @@ const reloading = ref(false);
 export default function useConfig() {
   const onResetConfig = () => {
     config.value = JSON.parse(JSON.stringify(defaultConfig));
+    setTimeout(() => {
+      window.location.reload();
+    }, 250);
   };
 
   const isDarkMode = computed(() => config.value.darkMode);
